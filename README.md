@@ -1,0 +1,2 @@
+# BookVerse
+Book Aggregator 📗
