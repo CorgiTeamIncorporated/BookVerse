@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.ext.associationproxy import association_proxy
-from sqlalchemy.dialects import postgresql
+from sqlalchemy.ext.associationproxy import association_proxy  # noqa
+from sqlalchemy.dialects import postgresql  # noqa
 
 import config as co
 

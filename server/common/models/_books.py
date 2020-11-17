@@ -1,4 +1,4 @@
-from .database import db, association_proxy, postgresql
+from common.database import db, association_proxy, postgresql # noqa
 
 
 translators_of_books_table = db.Table(
@@ -94,6 +94,9 @@ class Books(db.Model):
         'BooksStores',
         lazy='subquery'
     )
+
+    book = db.relationship('Books')
+    user = db.relationship('Users')
 
     def as_json(self):
         return {
