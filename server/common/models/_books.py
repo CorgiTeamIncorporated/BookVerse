@@ -80,7 +80,7 @@ class Books(db.Model):
     authors = db.relationship(
         'Authors',
         secondary=authors_of_books_table,
-        back_populates="authors",
+        back_populates="books",
         lazy='subquery'
     )
 
@@ -95,8 +95,8 @@ class Books(db.Model):
         lazy='subquery'
     )
 
-    book = db.relationship('Books')
-    user = db.relationship('Users')
+    # book = db.relationship('Books')
+    # user = db.relationship('Users')
 
     def as_json(self):
         return {
@@ -257,7 +257,7 @@ class Authors(db.Model):
     books = db.relationship(
         'Books',
         secondary=authors_of_books_table,
-        back_populates="books",
+        back_populates="authors",
         lazy='subquery'
     )
 

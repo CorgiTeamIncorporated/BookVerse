@@ -1,5 +1,6 @@
-from common.database import db, association_proxy, postgresql  # noqa
+import enum
 
+from common.database import association_proxy, db, postgresql  # noqa
 
 wishlists_table = db.Table(
     'wishlists',
@@ -22,6 +23,10 @@ favorites_table = db.Table(
               primary_key=True)
 )
 
+class RankEnum(enum.Enum):
+    user = 0
+    moderator = 1
+    reviewer = 2
 
 class Users(db.Model):
     __tablename__ = 'users'
@@ -32,7 +37,7 @@ class Users(db.Model):
     password = db.Column(db.String(60))
     karma = db.Column(db.Integer)
     avatar_path = db.Column(db.String(32))
-    rank = db.Column(db.Enum('user', 'moderator', 'reviewer', name='rank'))
+    rank = db.Column(db.Enum(RankEnum))
 
     wishlist = db.relationship(
         'Books',
@@ -68,7 +73,7 @@ class Reviews(db.Model):
     book_id = db.Column(db.Integer,
                         db.ForeignKey('books.book_id'),
                         primary_key=True)
-    date = db.Column('publish_date', db.Datetime)
+    date = db.Column('publish_date', db.DateTime)
     is_special = db.Column(db.Boolean)
     review = db.Column(db.Text)
 

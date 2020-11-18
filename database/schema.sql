@@ -85,7 +85,7 @@ create table translators
     translator_id smallserial not null
         constraint translators_pk
             primary key,
-    tranlator_name     varchar(48)
+    translator_name     varchar(48)
 );
 
 alter table translators

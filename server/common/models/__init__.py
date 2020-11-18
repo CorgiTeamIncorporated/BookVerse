@@ -1,5 +1,6 @@
-from ._books import Books, Translators, Tags, Awards, Authors, Genres, Stores
-from ._users import Users, Reviews, Raitings
+from ._books import (Authors, Awards, Books, Genres, Series, Stores, Tags,
+                     Translators)
+from ._users import Raitings, Reviews, Users, RankEnum
 
 __all__ = ['Books',
            'Translators',
@@ -10,4 +11,6 @@ __all__ = ['Books',
            'Stores',
            'Users',
            'Reviews',
-           'Raitings']
+           'Raitings',
+           'Series',
+           'RankEnum']
