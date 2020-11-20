@@ -45,14 +45,14 @@ class Users(db.Model):
         lazy='subquery'
     )
 
-    favorite = db.relationship(
+    favorites = db.relationship(
         'Books',
         secondary=favorites_table,
         lazy='subquery'
     )
 
     reviews = db.relationship('Reviews')
-    raitings = db.relationship('Raitings')
+    ratings = db.relationship('Ratings')
 
     def as_json(self):
         return {
@@ -81,14 +81,14 @@ class Reviews(db.Model):
     user = db.relationship('Users')
 
 
-class Raitings(db.Model):
+class Ratings(db.Model):
     user_id = db.Column(db.Integer,
                         db.ForeignKey('users.user_id'),
                         primary_key=True)
     book_id = db.Column(db.Integer,
                         db.ForeignKey('books.book_id'),
                         primary_key=True)
-    raiting = db.Column(db.Integer)
+    rating = db.Column(db.Integer)
 
     book = db.relationship('Books')
     user = db.relationship('Users')

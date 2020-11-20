@@ -95,8 +95,8 @@ class Books(db.Model):
         lazy='subquery'
     )
 
-    # book = db.relationship('Books')
-    # user = db.relationship('Users')
+    ratings = db.relationship('Ratings')
+    reviews = db.relationship('Reviews')
 
     def as_json(self):
         return {
@@ -234,13 +234,13 @@ class BooksAwards(db.Model):
     award = db.relationship('Awards')
 
     def as_json_award(self):
-        return{
+        return {
             'award': self.award.as_json(),
             'date': self.date
         }
 
     def as_json_book(self):
-        return{
+        return {
             'book': self.book.as_json(),
             'date': self.date
         }
@@ -336,14 +336,14 @@ class BooksStores(db.Model):
     store = db.relationship('Stores')
 
     def as_json_store(self):
-        return{
+        return {
             'store': self.store.as_json(),
             'price': self.price,
             'product_url': self.product_url
         }
 
     def as_json_book(self):
-        return{
+        return {
             'book': self.book.as_json(),
             'price': self.price,
             'product_url': self.product_url

@@ -1,52 +1,39 @@
-from common.models import *
+from .utils import RandomEntityFactory, db
 
-from .utils import db, rand_str
+_factory = RandomEntityFactory()
 
 def test_stores():
-    store = Stores(name=rand_str(32),
-                   logo_path=rand_str(32))
-    db.session.add(store)
+    db.session.add(_factory.new_store())
     db.session.commit()
 
 def test_genres():
-    genre = Genres(name=rand_str(32),
-                   description=rand_str(128))
-    db.session.add(genre)
+    db.session.add(_factory.new_genre())
     db.session.commit()
 
 def test_authors():
-    author = Authors(name=rand_str(48),
-                     bio=rand_str(128),
-                     photo_path=rand_str(32))
-    db.session.add(author)
+    db.session.add(_factory.new_author())
     db.session.commit()
 
 def test_awards():
-    award = Awards(name=rand_str(128),
-                   description=rand_str(128))
-    db.session.add(award)
+    db.session.add(_factory.new_award())
     db.session.commit()
 
 def test_tags():
-    tag = Tags(name=rand_str(32))
-    db.session.add(tag)
+    db.session.add(_factory.new_tag())
     db.session.commit()
 
 def test_translators():
-    translator = Translators(name=rand_str(48))
-    db.session.add(translator)
+    db.session.add(_factory.new_translator())
     db.session.commit()
 
 def test_series():
-    series = Series(name=rand_str(256),
-                    description=rand_str(128))
-    db.session.add(series)
+    db.session.add(_factory.new_series())
     db.session.commit()
 
 def test_users():
-    user = Users(login=rand_str(32),
-                 email=rand_str(96),
-                 password=rand_str(60),
-                 karma=42,
-                 avatar_path=rand_str(32),
-                 rank=RankEnum.moderator)
+    db.session.add(_factory.new_user())
+    db.session.commit()
+
+def test_books():
+    db.session.add(_factory.new_book())
+    db.session.commit()
