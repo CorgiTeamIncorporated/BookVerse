@@ -23,10 +23,12 @@ favorites_table = db.Table(
               primary_key=True)
 )
 
+
 class RankEnum(enum.Enum):
     user = 0
     moderator = 1
     reviewer = 2
+
 
 class Users(db.Model):
     __tablename__ = 'users'

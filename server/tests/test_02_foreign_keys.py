@@ -2,6 +2,7 @@ from .utils import RandomEntityFactory, db
 
 _factory = RandomEntityFactory()
 
+
 def test_books_stores():
     book = _factory.new_book()
     store = _factory.new_store()
@@ -13,6 +14,7 @@ def test_books_stores():
     db.session.add(book_store_link)
     db.session.commit()
 
+
 def test_books_genres():
     book = _factory.new_book()
     genre = _factory.new_genre()
@@ -22,6 +24,7 @@ def test_books_genres():
     db.session.add(book)
     db.session.commit()
 
+
 def test_books_authors():
     book = _factory.new_book()
     author = _factory.new_author()
@@ -30,6 +33,7 @@ def test_books_authors():
 
     db.session.add(author)
     db.session.commit()
+
 
 def test_books_awards():
     book = _factory.new_book()
@@ -42,6 +46,7 @@ def test_books_awards():
     db.session.add(book_award_link)
     db.session.commit()
 
+
 def test_books_tags():
     book = _factory.new_book()
     tag = _factory.new_tag()
@@ -50,6 +55,7 @@ def test_books_tags():
 
     db.session.add(book)
     db.session.commit()
+
 
 def test_books_translators():
     book = _factory.new_book()
@@ -60,6 +66,7 @@ def test_books_translators():
     db.session.add(book)
     db.session.commit()
 
+
 def test_books_series():
     book = _factory.new_book()
     series = _factory.new_series()
@@ -68,6 +75,7 @@ def test_books_series():
 
     db.session.add(book)
     db.session.commit()
+
 
 def test_users_wishlist():
     book = _factory.new_book()
@@ -78,6 +86,7 @@ def test_users_wishlist():
     db.session.add(user)
     db.session.commit()
 
+
 def test_users_favorites():
     book = _factory.new_book()
     user = _factory.new_user()
@@ -86,6 +95,7 @@ def test_users_favorites():
 
     db.session.add(user)
     db.session.commit()
+
 
 def test_users_ratings():
     book = _factory.new_book()
@@ -97,6 +107,7 @@ def test_users_ratings():
 
     db.session.add(rating)
     db.session.commit()
+
 
 def test_users_reviews():
     book = _factory.new_book()
