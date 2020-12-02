@@ -48,4 +48,4 @@ Book Aggregator 📗
 3. Отзывы пишутся зарегистрированными пользователями системы, рецензии - книжными критиками (привилегированные зарегистрированные пользователи)
 
 ## Entity-Relationship model
-[BookVerse - ER - ER Diagram.pdf](https://github.com/CorgiTeamIncorporated/BookVerse/files/5630551/BookVerse.-.ER.-.ER.Diagram.pdf)
+![BookVerse - ER - ER Diagram](https://user-images.githubusercontent.com/29786176/100899337-c6527000-34d2-11eb-9b10-3a919948ff45.png)
