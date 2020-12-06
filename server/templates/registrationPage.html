@@ -3,50 +3,11 @@
 	<head>
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<link rel="stylesheet" href="static/registrationPage.css">
+		<link rel="stylesheet" href="static/css/font-awesome.min.css">
 	</head>
 	
 	<body>
-		<header id = "header" class="header">
-			<div class="wrap header-wrap">
-				<div class="header-elements header-first">
-					<div class="header-element-wrap">
-						<div class="header-left header-name header-name-first">
-							Book
-						</div>
-					</div>
-					
-					<div class="header-right">
-						<form class="header-search">
-							<input class="header-search-input" type="text" placeholder="Название книги, имя автора">
-							<input class="header-search-button" type="submit" value="Поиск"></input>
-						</form>
-					
-						<div class="header-element-wrap header-element-vertical-wrap"">
-								<input class="reg-button" type="submit" value="Зарегистрироваться"></input>
-						</div>
-								
-						<div class="header-element-wrap">
-							<input class="header-enter-button" type="submit" value="Войти"></input>
-						</div>
-					</div>
-				</div>
-					
-					
-				<div class="header-element-wrap">
-					<div class="header-line"></div>
-				</div>
-					
-					
-				<div class="header-elements header-second">
-					<div class="header-element-wrap header-name-second-wrap">
-						<div class="header-name header-name-second">
-							Verse
-						</div>
-					</div>
-				</div>
-			</div>
-		</header>
-		
+		{% include "headerUnregUser.html" %}
 		<div class="page-body">
 			<div class="wrap">
 				<div class="authorization">
@@ -57,27 +18,44 @@
 					Зарегистрировать новый аккаунт:
 				</div>
 				
-				<form>
+				<form method="POST">
 					<div class="enter-wrap">
+						<div class="field-name"><p> Имя пользователя: </p></dir>
 						<div class="login-wrap input-wrap">
-							<input class="login-input enter-input" type="text" placeholder="Имя пользователя">
+							<input class="login-input enter-input" type="text" id="login" name="login" placeholder="Имя пользователя" value="{{ userdata['login'] }}" maxlength="32" required>
 						</div>
+						<div class="info">Имя пользователя должно содержать не менее<br>
+										 трёх знаков; может включать буквы латинского<br>
+										 	 алфавита, цифры и нижние подчёркивания</div>
 						
+						<div class="field-name"><p> Почта: </p></dir>
 						<div class="email-wrap input-wrap">
-							<input class="email-input enter-input" type="text" placeholder="Почта">
-						</div>
-							
-						<div class="password-wrap input-wrap">
-							<input class="password-input enter-input" type="text" placeholder="Пароль">
+							<input class="email-input enter-input" type="text" id="email" name="email" placeholder="Почта" value="{{ userdata['email'] }}" required>
 						</div>
 						
+						<div class="field-name"><p> Пароль: </p></dir>
 						<div class="password-wrap input-wrap">
-							<input class="password-input enter-input" type="text" placeholder="Повторите пароль">
+							<input class="password-input enter-input" type="password" id="pwd" name="pwd" placeholder="Пароль" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}" required>
+							<i class="fa fa-eye" id="toggle_pwd"></i>
+						</div>
+						<div class="info">Пароль должен содержать не менее восьми<br> 
+										знаков, включать строчные и заглавные буквы,<br>
+										       цифры и специальные символы</div>
+
+						<div class="field-name"><p> Подтвердите пароль: </p></dir>
+						<div class="password-wrap input-wrap">
+							<input class="password-input enter-input" type="password" id="pwd_rep" name="pwd_rep" placeholder="Повторите пароль" required>
+							<i class="fa fa-eye" id="toggle_pwd_rep"></i>
 						</div>
 							
 						<div class="enter-button-wrap input-wrap">
-							<input class="enter-button" type="submit" value="Зарегистрироваться"></input>
+							<input class="enter-button" type="submit" id="submit_btn" value="Зарегистрироваться"></input>
 						</div>
+
+						<div class="error-message"> {{ error_message }} </div>
+
+						<script src="static/js/psw_toggling.js"></script>
+						<script src="static/js/reg_data_checking.js"></script>
 					</div>
 				</form>
 				
@@ -87,21 +65,21 @@
 				
 				<div class="transitions">
 					<button class="vk-button tran-button">				
-						<img src="icons/Vk-logo.png" class="vk-img logo">
+						<img src="static/icons/Vk-logo.png" class="vk-img logo">
 						<div class="log-value">
 							Vk
 						</div>
 					</button>
 									
 					<button class="google-button tran-button">
-						<img src="icons/logo-gmail1.png" class="google-img logo">
+						<img src="static/icons/logo-gmail1.png" class="google-img logo">
 						<div class="log-value">
 							Gmail
 						</div>
 					</button>
 									
 					<button class="yandex-button tran-button">
-						<img src="icons/Yandex.png" class="yandex-img logo">
+						<img src="static/icons/Yandex.png" class="yandex-img logo">
 						<div class="log-value">
 							Яндекс
 						</div>

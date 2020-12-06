@@ -129,6 +129,7 @@ input {
 }
 
 .page-body {
+	display: flex;
 	padding: 50px 0;
 	text-align: center;
 }
@@ -178,7 +179,7 @@ input {
 	color: #5C3901;
 	font-family: Georgia;
 	font-size: 110%;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 	margin-top: 30px;
 }
 
@@ -200,4 +201,50 @@ input {
 
 .log-value{
 	color: #515151;
+}
+.password-wrap{
+	margin-left: -10px;
+}
+
+.password-wrap i{
+	margin-left: -30px;
+	cursor: pointer;
+}
+
+.enter-wrap .info{
+	white-space: pre-line;
+	color: #5C3901;
+	font-family: Georgia;
+	font-size: 80%;
+	margin-bottom: 20px;
+	margin-top: -8px;
+	line-height:7px
+}
+
+.enter-wrap .field-name{
+	color: #5C3901;
+	font-family: Georgia;
+}
+
+.field-name p{
+	margin-left: 106.5px;
+	text-align: left;
+	font-size: 95%;
+	margin-bottom: 4px;
+	margin-top: -8px;
+}
+
+.enter-wrap .error{
+	border:1px solid #e2240b;
+	background: rgb(255, 0, 13, 0.1);
+}
+
+.enter-wrap .error-message{
+	white-space: pre-line;
+	color: #e2240b;
+	font-family: Georgia;
+	font-size: 80%;
+	margin-bottom: 20px;
+	margin-top: 0px;
+	line-height:7px
 }
