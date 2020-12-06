@@ -1,4 +1,6 @@
-from ._registration import registration_page
+from ._registration import join_page
+from ._login import login_page
 
 
-__all__ = ['registration_page']
+__all__ = ['join_page',
+           'login_page']

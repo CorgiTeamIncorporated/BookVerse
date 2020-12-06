@@ -4,10 +4,10 @@ from common.utils import validators
 from common.models import Users, RankEnum
 from common.database import db
 
-registration_page = Blueprint('registration_page', __name__)
+join_page = Blueprint('join_page', __name__)
 
 
-@registration_page.route('/register', methods=['GET'])
+@join_page.route('/join', methods=['GET'])
 def login_route_get():
     userdata = {
         'login': "",
@@ -17,7 +17,7 @@ def login_route_get():
                            userdata=userdata)
 
 
-@registration_page.route('/register', methods=['POST'])
+@join_page.route('/join', methods=['POST'])
 def login_route_post():
     userdata = request.form.to_dict()
     # set up login validator
@@ -70,5 +70,4 @@ def login_route_post():
         db.session.add(new_user)
         db.session.commit()
 
-    return render_template('registrationPage.html',
-                           userdata=userdata)
+    return render_template('bookverse.html')
