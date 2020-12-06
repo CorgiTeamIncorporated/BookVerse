@@ -211,3 +211,22 @@ input {
 .log-value{
 	color: #515151;
 }
+
+.password-wrap{
+	margin-left: -10px;
+}
+
+.password-wrap i{
+	margin-left: -30px;
+	cursor: pointer;
+}
+
+.enter-wrap .error-message{
+	white-space: pre-line;
+	color: #e2240b;
+	font-family: Georgia;
+	font-size: 80%;
+	margin-bottom: 20px;
+	margin-top: 14px;
+	line-height:7px
+}
