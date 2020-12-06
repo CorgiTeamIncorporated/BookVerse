@@ -5,7 +5,7 @@ body {
 	background-color: #ffe3b4;
 		
 }
-	
+
 input {
 	border: 0;
 	border-radius: 4px;
@@ -32,64 +32,18 @@ input {
 	margin-right: 20px;
 }
 
-.search-input {
-	height: 25px;
-	width: 850px;
-}
-
-.button-box {
-	display: flex;
-	justify-content: center;
-	padding: 10px 0;
-}
-
-.search-button{
-	height: 50px;
-	width: 150px;
-	color: #ffe66f;
-	background-color: #4c678a;
-	margin: 0 20px;
-	border-radius: 4px;
-	font-family: Georgia;
-	font-size: 120%;
-}
-
-button {
-	border: 0;
-}
-
-.topic-wrap{
-	padding: 35px 0;
-}
 .topic-header{
-	background: #bbd9ff;
 	border-bottom: 2px solid #5C3901;
-	padding: 5px 5px;
-	border-radius: 6px 6px 0px 0px;
+	padding: 5px 0px;
 }
 
 .topic{
 	font-size: 120%;
-	color: #021C3C;
-	text-shadow: #021C3C 1px 1px 1px;
-}
-
-.genre-links {
-	padding-top: 20px;
-	display: grid;
-	grid-auto-flow: column;
-	grid-template-rows: repeat(6, 1fr);
-	
+	color: #5C3901;
 }
 
 a{
 	text-decoration: none;
-}
-
-.genre-link{
-	color: #a67424;
-	padding-bottom: 10px;
-	margin-left: 10px;
 }
 
 .book-box{
@@ -159,56 +113,113 @@ a{
 	background-color: #bbd9ff;
 	margin-left: 20px;
 	margin-right: 5px;
+	max-width: 200px;
 }
 
-.leader-wrap{
+.genre-column{
 	padding: 20px 30px;
 	white-space: nowrap;
 }
 
-.leader-topic{
-	color: #021C3C;
-	text-shadow: #021C3C 1px 1px 1px;
+.genre-topic{
 	margin-left: auto;
     margin-right: auto;
 	text-align: center;
+	margin-bottom: 20px;
 }
 
-.leader-img{
-	padding-top: 10px;
-}
-
-.top-wrap{
-	display: flex;
-    flex-direction: column;
-	padding: 0px 30px;
-}
-
-.top-link{
+.column-topic-link{
 	color: #5C3901;
 	text-shadow: #5C3901 0px 1px 1px;
 	padding-bottom: 5px;
 }
 
-.deployment{
-	color: #5C3901;
-	font-size: 60%;
-	text-align: center;
-}
-
 .book-top-link{
 	padding-bottom: 7px;
-	padding-right: 0px;
+	padding-right: 3px;
 	color: #a67424;
 	font-size: 90%;
+	white-space: normal;
 }
 
-.authors-wrap{
-	margin-top: 20px;
+.genre-list{
+	padding-inline-start: 0px;
+	padding-right: 5px;
+	margin-block-start: 0em;
 }
 
-::placeholder {
-  color: #a0a0a0;
-  font-size: 90%;
-  padding-left: 10px;
+li {
+	list-style-type: none;
+	
+}
+
+.genre{
+	display: flex;
+}
+
+.genre-action{
+	color: #5C3901;
+	font-size: 100%;
+	font-weight: bold;
+}
+
+.genre-scroll{
+	height: 300px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	margin-top: 10px;
+}
+
+.genre-scroll::-webkit-scrollbar{
+	background-color: #8A7A60;
+	width: 7px;
+	height: 7px;
+}
+
+.genre-scroll::-webkit-scrollbar-thumb{
+	background-color: #5C3A03;
+}
+
+.add-remote-button{
+	height: 10px;
+	padding: 1px 0px 0px 0px;
+	background-color: transparent;
+	border: 0px;
+	border-radius: 4px;
+	margin-right: 5px;
+	font-size: 90%;
+}
+.add-remote-button:focus{
+	border: 0;
+	outline:0;
+	color: #a67424;
+}
+.add-remote-button:active .icon{
+	color: #a67424;
+}
+
+.icon{
+	font-size: 90%;
+	color: #5C3901;
+}
+
+.genre-scroll-tag{
+	height: 300px;
+	overflow-y: scroll;
+	overflow-x: scroll;
+	margin-top: 10px;
+}
+
+.genre-scroll-tag::-webkit-scrollbar{
+	background-color: #8A7A60;
+	width: 7px;
+	height: 5px;
+}
+
+.genre-scroll-tag::-webkit-scrollbar-thumb{
+	background-color: #5C3A03;
+}
+
+.genre-scroll-tag::-webkit-scrollbar-corner{
+	background-color: #8A7A60;
 }
