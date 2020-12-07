@@ -1,11 +1,13 @@
 import random
+import re
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Tuple
 
 import grequests
 from bs4 import BeautifulSoup
 from requests import Response
 
+from models import Author, Book  # type: ignore
 from user_agents import USER_AGENTS  # type: ignore
 
 _requests_at_time = 3
@@ -29,6 +31,26 @@ month_num_mapping = {
 }
 
 
+def normalize_url(url: str) -> str:
+    """
+        Add prefix with site address if not provided
+    """
+
+    if not url.startswith('https://'):
+        return 'https://litres.ru' + url
+    return url
+
+
+def parse_date(pretty: str) -> datetime:
+    day, month, year = pretty.split()
+
+    return datetime(
+        day=int(day),
+        month=month_num_mapping[month],
+        year=int(year)
+    )
+
+
 def async_get(urls: List[str]) -> List[Response]:
     """
         Make GET requests to provided URL list asynchronously.
@@ -38,7 +60,7 @@ def async_get(urls: List[str]) -> List[Response]:
     return grequests.map(gen, size=_requests_at_time)
 
 
-def extract_authors_info(page_urls: List[str]) -> List[Dict[str, Any]]:
+def extract_authors_info(page_urls: List[str]) -> List[Author]:
     """
         Get and parse info about authors by provided links
     """
@@ -61,29 +83,20 @@ def extract_authors_info(page_urls: List[str]) -> List[Dict[str, Any]]:
 
         photo_path = soup.find('div', {'class': 'biblio_author_image'})
         photo_path = photo_path.find('img')['src']
-        if not photo_path.startswith('https://'):
-            photo_path = 'https://litres.ru' + photo_path
+        photo_path = normalize_url(photo_path)
 
-        authors.append({
+        data = {
             'name': name,
             'bio': bio,
-            'photo_path': photo_path
-        })
+            'photo_path': photo_path,
+        }
+
+        authors.append(Author(**data))
 
     return authors
 
 
-def parse_date(pretty: str) -> datetime:
-    day, month, year = pretty.split()
-
-    return datetime(
-        day=int(day),
-        month=month_num_mapping[month],
-        year=int(year)
-    )
-
-
-def extract_books_info(page_urls: List[str]) -> List[Dict[str, Any]]:
+def extract_books_info(page_urls: List[str]) -> List[Book]:
     """
         Get and parse info about books by provided links
     """
@@ -109,7 +122,7 @@ def extract_books_info(page_urls: List[str]) -> List[Dict[str, Any]]:
 
         authors = soup.find('div', {'class': 'biblio_book_author'})
         authors = authors.find_all('a')
-        authors = extract_authors_info(['https://litres.ru' + link['href']
+        authors = extract_authors_info([normalize_url(link['href'])
                                         for link in authors])
 
         tags = soup.find('li', {'class': 'tags_list'})
@@ -123,11 +136,29 @@ def extract_books_info(page_urls: List[str]) -> List[Dict[str, Any]]:
         genres = genres.find_all('a', {'class': 'biblio_info__link'})
         genres = [{'name': genre.text.capitalize()} for genre in genres]
 
-        # But there may be multiple series...
-        series = soup.find('div', {'class': 'biblio_book_sequences'})
-        if series is not None:
-            series = series.find('a', {'class': 'biblio_book_sequences__link'})
-            series = series.text
+        series = soup.find_all('div', {'class': 'biblio_book_sequences'})
+        series = [item.find('a', {'class': 'biblio_book_sequences__link'}).text
+                  for item in series]
+        series = [{'name': item} for item in series]
+
+        price_regex = re.compile(r'(\d+((\.|,)\d{2})?)\s*\u20bd')
+        prices = []
+
+        price_tags = [
+            soup.find('a', class_='get_book_by_subscr_button'),
+            soup.find('button', class_='a_buyany')
+        ]
+
+        for tag in price_tags:
+            if tag is not None:
+                match = price_regex.search(tag.text)
+                if match is not None:
+                    prices.append(float(match.group(1)))
+
+        if prices:
+            price = min(prices)
+        else:
+            price = 0
 
         books.append({
             'name': name,
@@ -139,7 +170,8 @@ def extract_books_info(page_urls: List[str]) -> List[Dict[str, Any]]:
             'authors': authors,
             'tags': tags,
             'genres': genres,
-            'series': series
+            'series': series,
+            'price': price
         })
 
     return books
