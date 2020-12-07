@@ -53,7 +53,7 @@ create table books
     rating_num   integer check (rating_num >=0),
     publish_date date,
     preamble     text,
-    cover_path   varchar(32)
+    cover_path   varchar(256)
 );
 
 alter table books
@@ -194,7 +194,7 @@ create table authors
             primary key,
     author_name       varchar(48),
     bio        text,
-    photo_path varchar(32)
+    photo_path varchar(256)
 );
 
 alter table authors
@@ -230,7 +230,7 @@ create table stores
         constraint stores_pk
             primary key,
     store_name varchar(32),
-    logo_path  varchar(32)
+    logo_path  varchar(256)
 );
 
 alter table stores
@@ -358,4 +358,4 @@ alter table ratings
 
 grant insert, select, update on ratings to app;
 
-
+insert into stores (store_name) values ('Литрес');

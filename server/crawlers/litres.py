@@ -1,13 +1,15 @@
 import random
 import re
 from datetime import datetime
-from typing import Any, Dict, List, Tuple
+from typing import List
 
 import grequests
 from bs4 import BeautifulSoup
 from requests import Response
 
-from models import Author, Book  # type: ignore
+from database import session  # type: ignore
+from models import (Author, Book, BookStore, Genre, Series,  # type: ignore
+                    Store, Tag)
 from user_agents import USER_AGENTS  # type: ignore
 
 _requests_at_time = 3
@@ -29,6 +31,8 @@ month_num_mapping = {
     'ноября': 11,
     'декабря': 12
 }
+
+litres_store = session.query(Store).filter(Store.name == 'Литрес').first()
 
 
 def normalize_url(url: str) -> str:
@@ -104,7 +108,7 @@ def extract_books_info(page_urls: List[str]) -> List[Book]:
     responses = async_get(page_urls)
     books = []
 
-    for response in responses:
+    for url, response in zip(page_urls, responses):
         soup = BeautifulSoup(response.text, 'html.parser')
 
         name = soup.find('div', {'class': 'biblio_book_name'})
@@ -128,18 +132,18 @@ def extract_books_info(page_urls: List[str]) -> List[Book]:
         tags = soup.find('li', {'class': 'tags_list'})
         if tags is not None:
             tags = tags.find_all('a', {'class': 'biblio_info__link'})
-            tags = [{'name': tag.text.capitalize()} for tag in tags]
+            tags = [Tag(name=tag.text.capitalize()) for tag in tags]
         else:
             tags = []
 
         genres = soup.find('strong', string='Жанр:').parent
         genres = genres.find_all('a', {'class': 'biblio_info__link'})
-        genres = [{'name': genre.text.capitalize()} for genre in genres]
+        genres = [Genre(name=genre.text.capitalize()) for genre in genres]
 
         series = soup.find_all('div', {'class': 'biblio_book_sequences'})
         series = [item.find('a', {'class': 'biblio_book_sequences__link'}).text
                   for item in series]
-        series = [{'name': item} for item in series]
+        series = [Series(name=item) for item in series]
 
         price_regex = re.compile(r'(\d+((\.|,)\d{2})?)\s*\u20bd')
         prices = []
@@ -160,7 +164,11 @@ def extract_books_info(page_urls: List[str]) -> List[Book]:
         else:
             price = 0
 
-        books.append({
+        book_store = BookStore(store=litres_store,
+                               product_url=url,
+                               price=price)
+
+        book_data = {
             'name': name,
             'rating_sum': 0,
             'rating_num': 0,
@@ -170,9 +178,13 @@ def extract_books_info(page_urls: List[str]) -> List[Book]:
             'authors': authors,
             'tags': tags,
             'genres': genres,
-            'series': series,
-            'price': price
-        })
+            # TODO: uncomment when series <-> books
+            #       would be many-to-many relationship
+            # 'series': series,
+            'book_stores': [book_store]
+        }
+
+        books.append(Book(**book_data))
 
     return books
 

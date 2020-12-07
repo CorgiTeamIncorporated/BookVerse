@@ -101,7 +101,7 @@ class Book(Base):
     )
 
     book_stores = relationship(
-        'BooksStore',
+        'BookStore',
         lazy='subquery'
     )
 
@@ -213,13 +213,13 @@ class Store(Base):
     name = Column('store_name', String(32))
     logo_path = Column(String(32))
 
-    books_stores = relationship(
-        'BooksStore',
+    book_stores = relationship(
+        'BookStore',
         lazy='dynamic'
     )
 
 
-class BooksStore(Base):
+class BookStore(Base):
     __tablename__ = 'stores_of_books'
 
     book_id = Column(Integer,
