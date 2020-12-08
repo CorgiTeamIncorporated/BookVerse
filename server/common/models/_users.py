@@ -1,6 +1,12 @@
 import enum
+from common.database import db
 
-from common.database import association_proxy, db, postgresql  # noqa
+
+class RankEnum(enum.Enum):
+    user = 0
+    moderator = 1
+    reviewer = 2
+
 
 wishlists_table = db.Table(
     'wishlists',
@@ -24,13 +30,7 @@ favorites_table = db.Table(
 )
 
 
-class RankEnum(enum.Enum):
-    user = 0
-    moderator = 1
-    reviewer = 2
-
-
-class Users(db.Model):
+class User(db.Model):
     __tablename__ = 'users'
 
     id = db.Column('user_id', db.Integer, primary_key=True)
@@ -42,33 +42,24 @@ class Users(db.Model):
     rank = db.Column(db.Enum(RankEnum))
 
     wishlist = db.relationship(
-        'Books',
+        'Book',
         secondary=wishlists_table,
         lazy='subquery'
     )
 
     favorites = db.relationship(
-        'Books',
+        'Book',
         secondary=favorites_table,
         lazy='subquery'
     )
 
-    reviews = db.relationship('Reviews')
-    ratings = db.relationship('Ratings')
-
-    def as_json(self):
-        return {
-            'id': self.id,
-            'login': self.login,
-            'email': self.email,
-            'password': self.password,
-            'karma': self.karma,
-            'avatar_path': self.avatar_path,
-            'rank': self.rank
-        }
+    reviews = db.relationship('Review')
+    ratings = db.relationship('Rating')
 
 
-class Reviews(db.Model):
+class Review(db.Model):
+    __tablename__ = 'reviews'
+
     user_id = db.Column(db.Integer,
                         db.ForeignKey('users.user_id'),
                         primary_key=True)
@@ -79,11 +70,13 @@ class Reviews(db.Model):
     is_special = db.Column(db.Boolean)
     review = db.Column(db.Text)
 
-    book = db.relationship('Books')
-    user = db.relationship('Users')
+    book = db.relationship('Book')
+    user = db.relationship('User')
 
 
-class Ratings(db.Model):
+class Rating(db.Model):
+    __tablename__ = 'ratings'
+
     user_id = db.Column(db.Integer,
                         db.ForeignKey('users.user_id'),
                         primary_key=True)
@@ -92,5 +85,5 @@ class Ratings(db.Model):
                         primary_key=True)
     rating = db.Column(db.Integer)
 
-    book = db.relationship('Books')
-    user = db.relationship('Users')
+    book = db.relationship('Book')
+    user = db.relationship('User')

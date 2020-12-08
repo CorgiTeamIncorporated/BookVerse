@@ -1,45 +1,27 @@
-import re
+from ._simple_validators import (MinLenghtValidator, MaxLenghtValidator,
+                                 PatternValidator, Compose)
 
 
-class Compose:
-    def __init__(self, validators):
-        self.validators = validators
-
-    def __call__(self, seq):
-        for validator in self.validators:
-            is_valid = validator(seq)
-            if not is_valid:
-                return False
-        return True
+# set up login validator
+login_regex = r'[a-zA-Z0-9_]*'
+login_validator = Compose([
+    MinLenghtValidator(3),
+    MaxLenghtValidator(32),
+    PatternValidator(login_regex)
+])
 
 
-class MinLenghtValidator:
-    def __init__(self, length):
-        self.length = length
-
-    def __call__(self, seq):
-        if len(seq) < self.length:
-            return False
-        return True
+# set up email validator
+email_regex = r'[a-zA-Z0-9\-.]+@([a-zA-Z0-9\-]+\.)+[a-z]{2,4}'
+email_validator = Compose([
+    MaxLenghtValidator(64),
+    PatternValidator(email_regex)
+])
 
 
-class MaxLenghtValidator:
-    def __init__(self, length):
-        self.length = length
-
-    def __call__(self, seq):
-        if len(seq) > self.length:
-            return False
-        return True
-
-
-class PatternValidator:
-    def __init__(self, *args):
-        self.patterns = args
-
-    def __call__(self, seq):
-        for pattern in self.patterns:
-            is_match = bool(re.fullmatch(pattern, seq))
-            if not is_match:
-                return False
-        return True
+# set up pwd validator
+pwd_regex = r'(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}'
+pwd_validator = Compose([
+    MinLenghtValidator(8),
+    PatternValidator(pwd_regex)
+])
