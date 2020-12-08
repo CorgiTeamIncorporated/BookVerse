@@ -1,6 +1,6 @@
 DB_NAME = 'bookverse'
 DB_USER = 'app'
-DB_PASS = '1234'
+DB_PASS = 'put your password'
 DB_HOST = 'localhost'
 DB_PORT = 5432
 

@@ -71,7 +71,7 @@ def test_books_series():
     book = _factory.new_book()
     series = _factory.new_series()
 
-    book.series = series
+    book.series.append(series)
 
     db.session.add(book)
     db.session.commit()
