@@ -13,7 +13,7 @@ create table genres
     genre_id    smallserial not null
         constraint genres_pk
             primary key,
-    genre_name  varchar(32),
+    genre_name  varchar(64),
     description text
 );
 
@@ -120,7 +120,7 @@ create table tags
     tag_id smallserial not null
         constraint tags_pk
             primary key,
-    tag_name   varchar(32)
+    tag_name   varchar(64)
 );
 
 alter table tags

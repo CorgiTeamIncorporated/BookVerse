@@ -66,7 +66,7 @@ class Book(Base):
     rating_num = Column(Integer)
     publish_date = Column(DateTime)
     preamble = Column(Text)
-    cover_path = Column(String(32))
+    cover_path = Column(String(256))
 
     series = relationship('Series')
 
@@ -139,7 +139,7 @@ class Tag(Base):
     __tablename__ = 'tags'
 
     id = Column('tag_id', Integer, primary_key=True)
-    name = Column('tag_name', String(32))
+    name = Column('tag_name', String(64))
 
     books = relationship(
         'Book',
@@ -182,7 +182,7 @@ class Author(Base):
     id = Column('author_id', Integer, primary_key=True)
     name = Column('author_name', String(48))
     bio = Column(Text)
-    photo_path = Column(String(32))
+    photo_path = Column(String(256))
 
     books = relationship(
         'Book',
@@ -196,7 +196,7 @@ class Genre(Base):
     __tablename__ = 'genres'
 
     id = Column('genre_id', Integer, primary_key=True)
-    name = Column('genre_name', String(32))
+    name = Column('genre_name', String(64))
     description = Column(Text)
 
     books = relationship(
@@ -211,7 +211,7 @@ class Store(Base):
 
     id = Column('store_id', Integer, primary_key=True)
     name = Column('store_name', String(32))
-    logo_path = Column(String(32))
+    logo_path = Column(String(256))
 
     book_stores = relationship(
         'BookStore',

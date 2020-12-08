@@ -11,6 +11,7 @@ from database import session  # type: ignore
 from models import (Author, Book, BookStore, Genre, Series,  # type: ignore
                     Store, Tag)
 from user_agents import USER_AGENTS  # type: ignore
+from utils import add_book  # type: ignore
 
 _requests_at_time = 3
 _headers = {
@@ -109,6 +110,7 @@ def extract_books_info(page_urls: List[str]) -> List[Book]:
     books = []
 
     for url, response in zip(page_urls, responses):
+        print(url)
         soup = BeautifulSoup(response.text, 'html.parser')
 
         name = soup.find('div', {'class': 'biblio_book_name'})
@@ -157,7 +159,7 @@ def extract_books_info(page_urls: List[str]) -> List[Book]:
             if tag is not None:
                 match = price_regex.search(tag.text)
                 if match is not None:
-                    prices.append(float(match.group(1)))
+                    prices.append(float(match.group(1).replace(',', '.')))
 
         if prices:
             price = min(prices)
@@ -190,4 +192,30 @@ def extract_books_info(page_urls: List[str]) -> List[Book]:
 
 
 if __name__ == '__main__':
-    print('Sorry, but crawler is not still implemented :(')
+    url_prefix = 'https://www.litres.ru/luchshie-knigi/page-{page}/'
+    pages = range(3, 6)
+
+    urls = [url_prefix.format(page=page) for page in pages]
+    responses = async_get(urls)
+
+    filter_book_types = ['Текст', 'PDF']
+
+    for response in responses:
+        soup = BeautifulSoup(response.text, 'html.parser')
+        link_tags = soup.find_all('a', class_='art__name__href')
+        urls = []
+
+        for link in link_tags:
+            book_type = link.parent.parent
+            book_type = book_type.find('span', {
+                'class': 'artlink-href-for-material'
+            }).text
+
+            if book_type in filter_book_types:
+                urls.append(normalize_url(link['href']))
+
+        books = extract_books_info(urls)
+
+        for book in books:
+            print(book.name)
+            add_book(book)
