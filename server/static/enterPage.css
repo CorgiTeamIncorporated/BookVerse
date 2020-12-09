@@ -18,116 +18,6 @@ input {
 	font-family: Georgia;
 }
 
-.header {
-	background-color: #ffc86f;
-	box-shadow: 0 0 15px 0 #444444;
-}
-
-.header-wrap {
-	padding: 0 10px;
-}
-
-.header-line {
-	border-bottom: 1px solid #444444;
-	width: 100%;
-}
-
-.header-name {
-	font-size: 35px;
-}
-
-.header-name-first {
-	transform: translateY(8px);
-}
-
-.header-element-wrap {
-	padding: 0 5px;
-}
-
-.header-elements {
-	align-items: center;
-	display: flex;
-	justify-content: space-between;
-}
-
-.header-right {
-	align-items: center;
-	display: flex;
-}
-
-.header-right .header-element {
-	height: 18px;
-}
-
-.header-input {
-	width: 150px;
-}
-
-.header-enter-button{
-	height: 25px;
-	width: 80px;
-	border-radius: 4px;
-	font-family: Georgia;
-	color: #ffa717;
-	background-color: #5C3901;
-}
-
-.header-reg {
-	display: flex;
-	flex-direction: column;
-	padding: 4px 0;
-	padding-right:240px;
-}
-
-.header-name-second-wrap {
-	align-self: flex-start;
-}
-
-.header-element-vertical-wrap {
-	padding-top: 4px;
-	padding-bottom: 4px;
-	margin-left: auto;
-    margin-right: auto;
-}
-
-.header-second{
-	padding-bottom: 5px;
-}
-
-.reg-button{
-	height: 25px;
-	width: 170px;
-	border-radius: 4px;
-	font-family: Georgia;
-	color: #ffe66f;
-	background-color: #4C678a;
-}
-
-.header-search{
-	margin-right: 5px;
-}
-
-.header-search-input{
-	height: 25px;
-	width: 200px;
-	padding-right: 10px;
-	padding-left: 10px;
-	margin-right: -.36em;
-	border-radius: 4px 0 0 4px;
-	font-family: Georgia;
-}
-
-.header-search-button{
-	height: 25px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-left: -.36em;
-	border-radius: 0 4px 4px 0;
-	font-family: Georgia;
-	color: #ffe66f;
-	background-color: #4C678a;
-}
-
 .page-body {
 	padding: 50px 0;
 	text-align: center;
@@ -210,4 +100,24 @@ input {
 
 .log-value{
 	color: #515151;
+}
+
+.password-wrap{
+	margin-left: -10px;
+	white-space: nowrap;
+}
+
+.password-wrap i{
+	margin-left: -30px;
+	cursor: pointer;
+}
+
+.enter-wrap .error-message{
+	white-space: pre-line;
+	color: #e2240b;
+	font-family: Georgia;
+	font-size: 80%;
+	margin-bottom: 20px;
+	margin-top: 14px;
+	line-height:7px
 }

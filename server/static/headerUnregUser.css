@@ -59,9 +59,6 @@ input {
 	height: 18px;
 }
 
-.header-input {
-	width: 150px;
-}
 
 .enter-button{
 	height: 25px;
@@ -70,13 +67,6 @@ input {
 	font-family: Georgia;
 	color: #ffa717;
 	background-color: #5C3901;
-}
-
-.header-reg {
-	display: flex;
-	flex-direction: column;
-	padding: 4px 0;
-	padding-right:240px;
 }
 
 .header-name-second-wrap {
@@ -104,7 +94,8 @@ input {
 }
 
 .header-search{
-	margin-right: 5px;
+	margin-right: 10px;
+	white-space: nowrap;;
 }
 
 .header-search-input{
