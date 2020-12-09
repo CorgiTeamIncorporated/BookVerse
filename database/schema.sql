@@ -1,23 +1,5 @@
 create type rank as enum ('user', 'moderator', 'reviewer');
 
-create table genres
-(
-    genre_id    smallserial not null
-        constraint genres_pk
-            primary key,
-    genre_name  varchar(32),
-    description text
-);
-
-create table series
-(
-    series_id   serial not null
-        constraint series_pk
-            primary key,
-    series_name varchar(256),
-    description text
-);
-
 create table books
 (
     book_id      serial not null
@@ -35,6 +17,15 @@ create table books
     cover_path   varchar(256)
 );
 
+create table genres
+(
+    genre_id    smallserial not null
+        constraint genres_pk
+            primary key,
+    genre_name  varchar(64),
+    description text
+);
+
 create table genres_of_books
 (
     book_id  integer  not null
@@ -45,6 +36,27 @@ create table genres_of_books
             references genres,
     constraint genres_of_books_pk
         primary key (book_id, genre_id)
+);
+
+create table series
+(
+    series_id   serial not null
+        constraint series_pk
+            primary key,
+    series_name varchar(256),
+    description text
+);
+
+create table series_of_books
+(
+    book_id   integer not null
+        constraint series_of_books_books_book_id_fk
+            references books,
+    series_id integer not null
+        constraint series_of_books_series_series_id_fk
+            references series,
+    constraint series_of_books_pk
+        primary key (book_id, series_id)
 );
 
 create table translators
@@ -75,7 +87,7 @@ create table tags
     tag_id   smallserial not null
         constraint tags_pk
             primary key,
-    tag_name varchar(32)
+    tag_name   varchar(64)
 );
 
 create unique index tags_tag_id_uindex
@@ -240,14 +252,4 @@ create table ratings
         primary key (user_id, book_id)
 );
 
-create table series_of_books
-(
-    book_id   integer not null
-        constraint series_of_books_books_book_id_fk
-            references books,
-    series_id integer not null
-        constraint series_of_books_series_series_id_fk
-            references series,
-    constraint series_of_books_pk
-        primary key (book_id, series_id)
-);
+insert into stores (store_name) values ('Литрес');
