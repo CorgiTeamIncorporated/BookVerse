@@ -1,3 +1,4 @@
+import argparse
 import random
 import re
 from datetime import datetime
@@ -11,9 +12,9 @@ from database import session  # type: ignore
 from models import (Author, Book, BookStore, Genre, Series,  # type: ignore
                     Store, Tag)
 from user_agents import USER_AGENTS  # type: ignore
-from utils import add_book  # type: ignore
+from utils import add_book, verbose_print  # type: ignore
 
-_requests_at_time = 3
+_args = None
 _headers = {
     'User-Agent': random.choice(USER_AGENTS)
 }
@@ -60,9 +61,12 @@ def async_get(urls: List[str]) -> List[Response]:
     """
         Make GET requests to provided URL list asynchronously.
     """
+    _args.log('Requesting {pages: 3d} pages with rate limit {limit}'.format(
+        pages=len(urls), limit=_args.rate_limit
+    ))
 
     gen = (grequests.get(url, headers=_headers) for url in urls)
-    return grequests.map(gen, size=_requests_at_time)
+    return grequests.map(gen, size=_args.rate_limit)
 
 
 def extract_authors_info(page_urls: List[str]) -> List[Author]:
@@ -110,7 +114,8 @@ def extract_books_info(page_urls: List[str]) -> List[Book]:
     books = []
 
     for url, response in zip(page_urls, responses):
-        print(url)
+        _args.log('Processing page %s' % url)
+
         soup = BeautifulSoup(response.text, 'html.parser')
 
         name = soup.find('div', {'class': 'biblio_book_name'})
@@ -191,11 +196,24 @@ def extract_books_info(page_urls: List[str]) -> List[Book]:
     return books
 
 
-if __name__ == '__main__':
-    url_prefix = 'https://www.litres.ru/luchshie-knigi/page-{page}/'
-    pages = range(3, 6)
+def crawl():
+    _args.log('Crawling pages {first}-{last} of "{section}" section'.format(
+        first=_args.first_page,
+        last=_args.last_page,
+        section=_args.section
+    ))
 
-    urls = [url_prefix.format(page=page) for page in pages]
+    page_mapping = {
+        'best': 'luchshie-knigi',
+        'new': 'novie'
+    }
+    section = page_mapping.get(_args.section)
+
+    url_prefix = 'https://www.litres.ru/{section}/page-{page}/'
+    pages = range(_args.first_page, _args.last_page + 1)
+
+    urls = [url_prefix.format(section=section, page=page)
+            for page in pages]
     responses = async_get(urls)
 
     filter_book_types = ['Текст', 'PDF']
@@ -209,13 +227,43 @@ if __name__ == '__main__':
             book_type = link.parent.parent
             book_type = book_type.find('span', {
                 'class': 'artlink-href-for-material'
-            }).text
+            })
 
-            if book_type in filter_book_types:
-                urls.append(normalize_url(link['href']))
+            if book_type is not None:
+                book_type = book_type.text
+
+                if book_type in filter_book_types:
+                    urls.append(normalize_url(link['href']))
 
         books = extract_books_info(urls)
 
         for book in books:
-            print(book.name)
+            _args.log('Adding "%s" book into database' % book.name)
             add_book(book)
+
+
+def parse_arguments():
+    global _args
+
+    parser = argparse.ArgumentParser(description='Crawl litres.ru website')
+
+    parser.add_argument('--from', dest='first_page', type=int, default=1,
+                        help='page to start crawling from')
+    parser.add_argument('--to', dest='last_page', type=int, default=5,
+                        help='page to end crawling with')
+    parser.add_argument('--verbose', dest='log', action='store_const',
+                        default=lambda *args, **kwargs: None,
+                        const=verbose_print,
+                        help='verbose mode')
+    parser.add_argument('--rate-limit', dest='rate_limit', type=int, default=3,
+                        help='rate limit of crawling')
+    parser.add_argument('--section', choices=['new', 'best'],
+                        dest='section', default='best',
+                        help='section of site to crawl from')
+
+    _args = parser.parse_args()
+
+
+if __name__ == '__main__':
+    parse_arguments()
+    crawl()

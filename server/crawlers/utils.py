@@ -54,3 +54,7 @@ def add_book(book: Book) -> None:
         session.add(book)
 
     session.commit()
+
+
+def verbose_print(*args, **kwargs) -> None:
+    print('[DEBUG]', *args, **kwargs)
