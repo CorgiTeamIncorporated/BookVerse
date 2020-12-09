@@ -185,9 +185,7 @@ def extract_books_info(page_urls: List[str]) -> List[Book]:
             'authors': authors,
             'tags': tags,
             'genres': genres,
-            # TODO: uncomment when series <-> books
-            #       would be many-to-many relationship
-            # 'series': series,
+            'series': series,
             'book_stores': [book_store]
         }
 

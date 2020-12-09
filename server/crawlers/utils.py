@@ -37,10 +37,12 @@ def add_book(book: Book) -> None:
         authors = book.authors.copy()
         tags = book.tags.copy()
         genres = book.genres.copy()
+        series = book.series.copy()
 
         book.authors = []
         book.tags = []
         book.genres = []
+        book.series = []
 
         for author in authors:
             book.authors.append(select_or_insert(author, 'name'))
@@ -50,6 +52,9 @@ def add_book(book: Book) -> None:
 
         for genre in genres:
             book.genres.append(select_or_insert(genre, 'name'))
+
+        for item in series:
+            book.series.append(select_or_insert(item, 'name'))
 
         session.add(book)
 

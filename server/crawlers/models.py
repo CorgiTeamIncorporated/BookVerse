@@ -55,12 +55,22 @@ genres_of_books_table = Table(
 )
 
 
+series_of_books_table = Table(
+    'series_of_books',
+    Base.metadata,
+    Column('book_id', Integer,
+           ForeignKey('books.book_id'),
+           primary_key=True),
+    Column('series_id', Integer,
+           ForeignKey('series.series_id'),
+           primary_key=True)
+)
+
+
 class Book(Base):
     __tablename__ = 'books'
 
     id = Column('book_id', Integer, primary_key=True)
-    series_id = Column(Integer,
-                       ForeignKey('series.series_id'))
     name = Column('book_name', String(128))
     rating_sum = Column(Integer)
     rating_num = Column(Integer)
@@ -68,7 +78,11 @@ class Book(Base):
     preamble = Column(Text)
     cover_path = Column(String(256))
 
-    series = relationship('Series')
+    series = relationship(
+        'Series',
+        secondary=series_of_books_table,
+        lazy='subquery'
+    )
 
     translators = relationship(
         'Translator',
@@ -105,9 +119,6 @@ class Book(Base):
         lazy='subquery'
     )
 
-    # ratings = relationship('Ratings')
-    # reviews = relationship('Reviews')
-
 
 class Series(Base):
     __tablename__ = 'series'
@@ -118,6 +129,7 @@ class Series(Base):
 
     books = relationship(
         'Book',
+        secondary=series_of_books_table,
         lazy='subquery'
     )
 
