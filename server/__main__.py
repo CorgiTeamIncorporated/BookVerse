@@ -4,6 +4,7 @@ from common.database import db, db_url
 from common.login_manager import lm
 from blueprints.auth import auth
 from blueprints.main import main
+from .config import APP_SECRET
 
 
 logging.basicConfig(filename='user.log',
@@ -13,7 +14,7 @@ logging.basicConfig(filename='user.log',
                     level=logging.INFO)
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'ZgZiRcm768SeCMxtUQDh54W8YRVEBuLr2dDJzm45wzU'
+app.config['SECRET_KEY'] = APP_SECRET
 app.config['SQLALCHEMY_DATABASE_URI'] = db_url
 
 db.init_app(app)
