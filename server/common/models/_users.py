@@ -1,5 +1,6 @@
 import enum
 from common.database import db
+from flask_login import UserMixin
 
 
 class RankEnum(enum.Enum):
@@ -30,7 +31,7 @@ favorites_table = db.Table(
 )
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column('user_id', db.Integer, primary_key=True)

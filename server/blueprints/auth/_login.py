@@ -1,13 +1,13 @@
 import bcrypt
-from flask import Blueprint, render_template, request
+from flask import render_template, request, redirect, url_for
 from common.models import User
+from flask_login import login_user, current_user
 
 
-login_page = Blueprint('login_page', __name__)
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.home'))
 
-
-@login_page.route('/login', methods=['GET'])
-def registration_route_get():
     userdata = {
         'login': ""
     }
@@ -15,8 +15,7 @@ def registration_route_get():
                            userdata=userdata)
 
 
-@login_page.route('/login', methods=['POST'])
-def registration_route_post():
+def login_post():
     userdata = request.form.to_dict()
 
     # check if user with input login exists
@@ -26,8 +25,11 @@ def registration_route_post():
                                userdata=userdata,
                                error_message=error_message)
 
+    # get user
+    user = User.query.filter_by(login=userdata['login']).one()
+
     # check if password is correct
-    pwd = User.query.filter_by(login=userdata['login']).one().password
+    pwd = user.password
 
     pwd = pwd.encode('utf-8')
     input_pwd = userdata['pwd'].encode('utf-8')
@@ -38,4 +40,5 @@ def registration_route_post():
                                userdata=userdata,
                                error_message=error_message)
 
-    return render_template('bookverse.html')
+    login_user(user, remember=False)
+    return redirect(url_for('main.home'))
