@@ -82,3 +82,6 @@ class RandomEntityFactory:
         return models.Review(is_special=True,
                              date=datetime.now(),
                              review=rand_str(128))
+
+    def new_redactor_choice(self) -> models.RedactorChoice:
+        return models.RedactorChoice(added_date=datetime.now())

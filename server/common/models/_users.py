@@ -6,7 +6,8 @@ from flask_login import UserMixin
 class RankEnum(enum.Enum):
     user = 0
     moderator = 1
-    reviewer = 2
+    redactor = 2
+    admin = 3
 
 
 wishlists_table = db.Table(
@@ -85,6 +86,21 @@ class Rating(db.Model):
                         db.ForeignKey('books.book_id'),
                         primary_key=True)
     rating = db.Column(db.Integer)
+
+    book = db.relationship('Book')
+    user = db.relationship('User')
+
+
+class RedactorChoice(db.Model):
+    __tablename__ = 'redactors_choice'
+
+    user_id = db.Column(db.Integer,
+                        db.ForeignKey('users.user_id'),
+                        primary_key=True)
+    book_id = db.Column(db.Integer,
+                        db.ForeignKey('books.book_id'),
+                        primary_key=True)
+    added_date = db.Column(db.DateTime)
 
     book = db.relationship('Book')
     user = db.relationship('User')
