@@ -118,6 +118,7 @@ a{
 	color: grey;
 	z-index: 1;
 }
+
 .stars-in {
 	position: absolute; 
 	z-index: 2; 
@@ -132,7 +133,7 @@ a{
 .stars{
 	padding-top: 5px;
 	padding-right: 5px;
-	padding-left: 10px;
+	padding-left: 5px;
 }
 
 .book-header{
