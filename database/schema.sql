@@ -23,7 +23,8 @@ create table genres
         constraint genres_pk
             primary key,
     genre_name  varchar(64),
-    description text
+    description text,
+    popularity  integer default 0
 );
 
 create table genres_of_books
@@ -137,7 +138,8 @@ create table authors
             primary key,
     author_name varchar(48),
     bio         text,
-    photo_path  varchar(256)
+    photo_path  varchar(256),
+    popularity  integer default 0
 );
 
 create unique index authors_author_id_uindex

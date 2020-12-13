@@ -31,12 +31,14 @@ class RandomEntityFactory:
 
     def new_genre(self) -> models.Genre:
         return models.Genre(name=rand_str(32),
-                            description=rand_str(128))
+                            description=rand_str(128),
+                            popularity=0)
 
     def new_author(self) -> models.Author:
         return models.Author(name=rand_str(48),
                              bio=rand_str(128),
-                             photo_path=rand_str(32))
+                             photo_path=rand_str(32),
+                             popularity=0)
 
     def new_award(self) -> models.Award:
         return models.Award(name=rand_str(128),

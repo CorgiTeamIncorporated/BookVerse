@@ -31,7 +31,7 @@
 					
 					<div class="topic-wrap">
 						<div class="topic-header">
-							<a class="topic" href=#>Категории</a>
+							<a class="topic" href=#>Популярные Категории</a>
 						</div>
 						
 						<div class="genre-links">
@@ -55,41 +55,43 @@
 									
 									<div class="inf-wrap">
 										<div class="book-header">
-											<a href=# class="book-link">{{ item.book_name }}</a>
-											{% for author in item.authors %}
-												<a href=# class="book-link"> {{ author }} </a>
-											{% endfor %}			
+											<div class="book-title-author">
+												<a href=# class="book-link">{{ item.book_name }} </a>
+												{% for author in item.authors %}
+													<a href=# class="book-link book-author"> {{ author }} </a>
+												{% endfor %}			
+											</div>
 											
 											<div class="stars">
 												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" aria-hidden="true" style="width: 100%;"></i>
+													<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100, 0) | max, 100) | min }}%;"></i>
 												</i>
 												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" aria-hidden="true" style="width: 100%;"></i>
+													<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 100, 0) | max, 100) | min }}%;"></i>
 												</i>
 												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" aria-hidden="true" style="width: 100%;"></i>
+													<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 200, 0) | max, 100) | min }}%;"></i>
 												</i>
 												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" aria-hidden="true" style="width: 100%;"></i>
+													<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 300, 0) | max, 100) | min }}%;"></i>
 												</i>
 												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" aria-hidden="true" style="width: 100%;"></i>
+													<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 400, 0) | max, 100) | min }}%;"></i>
 												</i>
 												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" aria-hidden="true" style="width: 100%;"></i>
+													<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 500, 0) | max, 100) | min }}%;"></i>
 												</i>
 												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" aria-hidden="true" style="width: 100%;"></i>
+													<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 600, 0) | max, 100) | min }}%;"></i>
 												</i>
 												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" aria-hidden="true" style="width: 100%;"></i>
+													<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 700, 0) | max, 100) | min }}%;"></i>
 												</i>
 												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" aria-hidden="true" style="width: 100%;"></i>
+													<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 800, 0) | max, 100) | min }}%;"></i>
 												</i>
 												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" style="width: 33.33%;"></i>
+													<i class="fa fa-star stars-in" style="width: {{ ((item.book_rating*100 - 900, 0) | max, 100) | min }}%;"></i>
 												</i>
 											</div>
 										</div>
@@ -115,7 +117,7 @@
 				<div class="blue-column">
 					<div class="leader-wrap">
 						<div class="leader-topic">
-							Лидер месяца
+							Новинка месяца
 						</div>
 						
 						<div class="img-wrap leader-img">
@@ -134,19 +136,9 @@
 					<div class="top-wrap authors-wrap">
 						<a href=# class="top-link">Популярные Авторы</a>
 						
-						<a href=# class="book-top-link">Стивен Кинг</a>
-						<a href=# class="book-top-link">Ю Несбё</a>
-						<a href=# class="book-top-link">Дэн Браун</a>
-						<a href=# class="book-top-link">Алекс Михаэлидес</a>
-						<a href=# class="book-top-link">Нил Гейман</a>
-						<a href=# class="book-top-link">Терри Пратчетт</a>
-						
-						<div style="display:none">
-							<a href=# class="book-top-link">Оно</a>
-							<a href=# class="book-top-link">Оно</a>
-							<a href=# class="book-top-link">Оно</a>
-						</div>
-						<a class="deployment" href="javascript://" onclick="">Развернуть</a>					
+						{% for author in best_authors %}
+							<a href=# class="book-top-link"> {{ author.name }} </a>
+						{% endfor %}					
 					</div>
 				</div>
 			</div>

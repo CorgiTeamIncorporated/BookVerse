@@ -1,0 +1,73 @@
+2020-12-14 00:46:07,572 werkzeug INFO  * Restarting with stat
+2020-12-14 00:46:08,117 werkzeug WARNING  * Debugger is active!
+2020-12-14 00:46:08,151 werkzeug INFO  * Debugger PIN: 840-886-188
+2020-12-14 00:46:08,163 werkzeug INFO  * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)
+2020-12-14 00:46:14,100 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 00:46:14] "[37mGET /home HTTP/1.1[0m" 200 -
+2020-12-14 00:46:14,252 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 00:46:14] "[33mGET /css/font-awesome.min.css HTTP/1.1[0m" 404 -
+2020-12-14 00:46:14,282 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 00:46:14] "[33mGET /bofhrprnuvwudvswpzotygvbtnspeglb HTTP/1.1[0m" 404 -
+2020-12-14 00:46:14,836 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 00:46:14] "[37mGET /static/css/font-awesome.min.css HTTP/1.1[0m" 200 -
+2020-12-14 00:46:14,846 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 00:46:14] "[37mGET /static/headerRegUser.css HTTP/1.1[0m" 200 -
+2020-12-14 00:46:14,864 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 00:46:14] "[37mGET /static/mainpage.css HTTP/1.1[0m" 200 -
+2020-12-14 00:48:28,722 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 00:48:28] "[37mGET /home HTTP/1.1[0m" 200 -
+2020-12-14 00:48:28,752 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 00:48:28] "[33mGET /css/font-awesome.min.css HTTP/1.1[0m" 404 -
+2020-12-14 00:48:28,762 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 00:48:28] "[33mGET /bofhrprnuvwudvswpzotygvbtnspeglb HTTP/1.1[0m" 404 -
+2020-12-14 00:48:30,54 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 00:48:30] "[37mGET /home HTTP/1.1[0m" 200 -
+2020-12-14 00:48:30,81 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 00:48:30] "[33mGET /css/font-awesome.min.css HTTP/1.1[0m" 404 -
+2020-12-14 00:48:30,85 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 00:48:30] "[33mGET /bofhrprnuvwudvswpzotygvbtnspeglb HTTP/1.1[0m" 404 -
+2020-12-14 00:49:37,946 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 00:49:37] "[37mGET /home HTTP/1.1[0m" 200 -
+2020-12-14 00:49:38,36 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 00:49:38] "[33mGET /css/font-awesome.min.css HTTP/1.1[0m" 404 -
+2020-12-14 01:10:59,719 werkzeug INFO  * Detected change in 'd:\\Documents\\Projects\\Python\\bookverse\\BookVerse\\server\\blueprints\\main\\_home.py', reloading
+2020-12-14 01:10:59,877 werkzeug INFO  * Restarting with stat
+2020-12-14 01:15:55,869 werkzeug INFO  * Restarting with stat
+2020-12-14 01:15:56,342 werkzeug WARNING  * Debugger is active!
+2020-12-14 01:15:56,350 werkzeug INFO  * Debugger PIN: 840-886-188
+2020-12-14 01:15:56,365 werkzeug INFO  * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)
+2020-12-14 01:15:56,830 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:15:56] "[35m[1mGET /home HTTP/1.1[0m" 500 -
+2020-12-14 01:15:57,558 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:15:57] "[37mGET /home?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+2020-12-14 01:15:57,558 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:15:57] "[37mGET /home?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+2020-12-14 01:15:57,559 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:15:57] "[37mGET /home?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+2020-12-14 01:15:57,662 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:15:57] "[37mGET /home?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+2020-12-14 01:15:57,689 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:15:57] "[37mGET /home?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+2020-12-14 01:15:57,717 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:15:57] "[37mGET /home?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+2020-12-14 01:17:29,156 werkzeug INFO  * Detected change in 'd:\\Documents\\Projects\\Python\\bookverse\\BookVerse\\server\\blueprints\\main\\_home.py', reloading
+2020-12-14 01:17:29,226 werkzeug INFO  * Restarting with stat
+2020-12-14 01:17:29,681 werkzeug WARNING  * Debugger is active!
+2020-12-14 01:17:29,686 werkzeug INFO  * Debugger PIN: 840-886-188
+2020-12-14 01:17:29,696 werkzeug INFO  * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)
+2020-12-14 01:17:35,359 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:17:35] "[37mGET /home HTTP/1.1[0m" 200 -
+2020-12-14 01:17:35,390 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:17:35] "[33mGET /css/font-awesome.min.css HTTP/1.1[0m" 404 -
+2020-12-14 01:17:35,710 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:17:35] "[37mGET /static/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1[0m" 200 -
+2020-12-14 01:17:46,226 werkzeug INFO  * Detected change in 'd:\\Documents\\Projects\\Python\\bookverse\\BookVerse\\server\\blueprints\\main\\_home.py', reloading
+2020-12-14 01:17:46,309 werkzeug INFO  * Restarting with stat
+2020-12-14 01:17:46,850 werkzeug WARNING  * Debugger is active!
+2020-12-14 01:17:46,855 werkzeug INFO  * Debugger PIN: 840-886-188
+2020-12-14 01:17:46,867 werkzeug INFO  * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)
+2020-12-14 01:25:02,915 werkzeug INFO  * Detected change in 'd:\\Documents\\Projects\\Python\\bookverse\\BookVerse\\server\\blueprints\\main\\_home.py', reloading
+2020-12-14 01:25:03,60 werkzeug INFO  * Restarting with stat
+2020-12-14 01:25:05,539 werkzeug WARNING  * Debugger is active!
+2020-12-14 01:25:05,543 werkzeug INFO  * Debugger PIN: 840-886-188
+2020-12-14 01:25:05,570 werkzeug INFO  * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)
+2020-12-14 01:25:08,696 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:25:08] "[37mGET /home HTTP/1.1[0m" 200 -
+2020-12-14 01:25:08,790 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:25:08] "[33mGET /css/font-awesome.min.css HTTP/1.1[0m" 404 -
+2020-12-14 01:25:12,761 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:25:12] "[37mGET /home HTTP/1.1[0m" 200 -
+2020-12-14 01:25:12,784 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:25:12] "[33mGET /css/font-awesome.min.css HTTP/1.1[0m" 404 -
+2020-12-14 01:25:16,126 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:25:16] "[37mGET /home HTTP/1.1[0m" 200 -
+2020-12-14 01:25:16,149 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:25:16] "[33mGET /css/font-awesome.min.css HTTP/1.1[0m" 404 -
+2020-12-14 01:25:16,744 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:25:16] "[37mGET /static/css/font-awesome.min.css HTTP/1.1[0m" 200 -
+2020-12-14 01:25:16,755 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:25:16] "[37mGET /static/headerRegUser.css HTTP/1.1[0m" 200 -
+2020-12-14 01:25:16,772 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:25:16] "[37mGET /static/mainpage.css HTTP/1.1[0m" 200 -
+2020-12-14 01:25:16,821 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:25:16] "[37mGET /static/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1[0m" 200 -
+2020-12-14 01:25:16,913 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:25:16] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2020-12-14 01:28:20,273 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:28:20] "[37mGET /home HTTP/1.1[0m" 200 -
+2020-12-14 01:28:20,352 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:28:20] "[33mGET /css/font-awesome.min.css HTTP/1.1[0m" 404 -
+2020-12-14 01:28:35,259 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:28:35] "[37mGET /home HTTP/1.1[0m" 200 -
+2020-12-14 01:28:35,287 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:28:35] "[33mGET /css/font-awesome.min.css HTTP/1.1[0m" 404 -
+2020-12-14 01:28:36,777 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:28:36] "[37mGET /home HTTP/1.1[0m" 200 -
+2020-12-14 01:28:36,798 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:28:36] "[33mGET /css/font-awesome.min.css HTTP/1.1[0m" 404 -
+2020-12-14 01:39:10,823 werkzeug INFO  * Detected change in 'd:\\Documents\\Projects\\Python\\bookverse\\BookVerse\\server\\blueprints\\main\\_home.py', reloading
+2020-12-14 01:39:10,909 werkzeug INFO  * Restarting with stat
+2020-12-14 01:39:11,486 werkzeug WARNING  * Debugger is active!
+2020-12-14 01:39:11,494 werkzeug INFO  * Debugger PIN: 840-886-188
+2020-12-14 01:39:11,507 werkzeug INFO  * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)
+2020-12-14 01:39:14,46 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:39:14] "[37mGET /home HTTP/1.1[0m" 200 -
+2020-12-14 01:39:14,71 werkzeug INFO 127.0.0.1 - - [14/Dec/2020 01:39:14] "[33mGET /css/font-awesome.min.css HTTP/1.1[0m" 404 -

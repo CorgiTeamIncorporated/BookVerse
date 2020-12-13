@@ -189,6 +189,7 @@ class Author(db.Model):
     name = db.Column('author_name', db.String(48))
     bio = db.Column(db.Text)
     photo_path = db.Column(db.String(32))
+    popularity = db.Column(db.Integer)
 
     books = db.relationship(
         'Book',
@@ -204,6 +205,7 @@ class Genre(db.Model):
     id = db.Column('genre_id', db.Integer, primary_key=True)
     name = db.Column('genre_name', db.String(32))
     description = db.Column(db.Text)
+    popularity = db.Column(db.Integer)
 
     books = db.relationship(
         'Book',
