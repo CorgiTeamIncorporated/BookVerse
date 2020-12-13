@@ -1,11 +1,11 @@
-create type rank as enum ('user', 'moderator', 'reviewer');
+create type rank as enum ('user', 'moderator', 'redactor', 'admin');
 
 create table books
 (
     book_id      serial not null
         constraint books_pk
             primary key,
-    book_name    varchar(128),
+    book_name    varchar(256),
     rating_sum   integer
         constraint books_rating_sum_check
             check (rating_sum >= 0),
@@ -23,7 +23,8 @@ create table genres
         constraint genres_pk
             primary key,
     genre_name  varchar(64),
-    description text
+    description text,
+    popularity  integer default 0
 );
 
 create table genres_of_books
@@ -137,7 +138,8 @@ create table authors
             primary key,
     author_name varchar(48),
     bio         text,
-    photo_path  varchar(256)
+    photo_path  varchar(256),
+    popularity  integer default 0
 );
 
 create unique index authors_author_id_uindex
@@ -249,6 +251,19 @@ create table ratings
         constraint ratings_rating_check
             check ((rating > 0) AND (rating <= 10)),
     constraint ratings_pk
+        primary key (user_id, book_id)
+);
+
+create table redactors_choice
+(
+    user_id    integer not null
+        constraint redactors_choice_users_user_id_fk
+            references users,
+    book_id    integer not null
+        constraint redactors_choice_books_book_id_fk
+            references books,
+    added_date date    not null,
+    constraint redactors_choice_pk
         primary key (user_id, book_id)
 );
 

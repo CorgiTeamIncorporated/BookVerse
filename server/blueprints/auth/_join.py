@@ -1,16 +1,16 @@
 import bcrypt
 from common.models import User, RankEnum
 from common.database import db
-from flask import Blueprint, render_template, request
+from flask_login import current_user
+from flask import render_template, request, redirect, url_for
 from common.utils.validators import (login_validator, email_validator,
                                      pwd_validator)
 
 
-join_page = Blueprint('join_page', __name__)
+def join():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.home'))
 
-
-@join_page.route('/join', methods=['GET'])
-def login_route_get():
     userdata = {
         'login': "",
         'email': ""
@@ -19,8 +19,7 @@ def login_route_get():
                            userdata=userdata)
 
 
-@join_page.route('/join', methods=['POST'])
-def login_route_post():
+def join_post():
     userdata = request.form.to_dict()
 
     # check if every single input is correct
@@ -61,4 +60,4 @@ def login_route_post():
         db.session.add(new_user)
         db.session.commit()
 
-    return render_template('bookverse.html')
+    return redirect(url_for('auth.login'))
