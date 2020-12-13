@@ -17,4 +17,4 @@ auth.add_url_rule('/login', 'login_post',
                   login_post, methods=['POST'])
 
 auth.add_url_rule('/logout', 'logout',
-                  logout, methods=['GET'])
+                  logout, methods=['POST'])
