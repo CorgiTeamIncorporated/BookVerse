@@ -1,6 +1,8 @@
 import enum
+
 from common.database import db
 from flask_login import UserMixin
+from sqlalchemy import ForeignKeyConstraint, UniqueConstraint
 
 
 class RankEnum(enum.Enum):
@@ -75,6 +77,17 @@ class Review(db.Model):
     book = db.relationship('Book')
     user = db.relationship('User')
 
+    __table_args__ = (
+        UniqueConstraint("user_id", "book_id"),
+        ForeignKeyConstraint(
+            ["user_id", "book_id"],
+            ["ratings.user_id", "ratings.book_id"],
+            name="fk_reviews_ratings"
+        ),
+    )
+
+    rating = db.relationship('Rating')
+
 
 class Rating(db.Model):
     __tablename__ = 'ratings'
@@ -89,6 +102,10 @@ class Rating(db.Model):
 
     book = db.relationship('Book')
     user = db.relationship('User')
+
+    __table_args__ = (
+        UniqueConstraint("user_id", "book_id"),
+    )
 
 
 class RedactorChoice(db.Model):

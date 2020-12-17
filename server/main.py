@@ -1,11 +1,12 @@
 import logging
+
 from flask import Flask
-from common.database import db, db_url
-from common.login_manager import lm
+
 from blueprints.auth import auth
 from blueprints.main import main
+from common.database import db, db_url
+from common.login_manager import lm
 from config import APP_SECRET
-
 
 logging.basicConfig(filename='user.log',
                     filemode='a',
