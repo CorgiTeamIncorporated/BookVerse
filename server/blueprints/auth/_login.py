@@ -1,14 +1,13 @@
 import bcrypt
-from flask import Blueprint, render_template, request
-from common.models import Users
-from common.database import db
+from flask import render_template, request, redirect, url_for
+from common.models import User
+from flask_login import login_user, current_user
 
 
-login_page = Blueprint('login_page', __name__)
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.home'))
 
-
-@login_page.route('/login', methods=['GET'])
-def registration_route_get():
     userdata = {
         'login': ""
     }
@@ -16,22 +15,30 @@ def registration_route_get():
                            userdata=userdata)
 
 
-@login_page.route('/login', methods=['POST'])
-def registration_route_post():
+def login_post():
     userdata = request.form.to_dict()
+
     # check if user with input login exists
-    if db.session.query(Users.id).filter_by(login=userdata['login']).scalar() is None: # noqa
+    if User.query.filter_by(login=userdata['login']).scalar() is None:
         error_message = 'Пользователя с таким логином не существует'
         return render_template('enterPage.html',
                                userdata=userdata,
                                error_message=error_message)
 
+    # get user
+    user = User.query.filter_by(login=userdata['login']).one()
+
     # check if password is correct
-    pwd = db.session.query(Users).filter_by(login=userdata['login']).one().password # noqa
-    if not bcrypt.checkpw(userdata['pwd'].encode('utf-8'), pwd.encode('utf-8')): # noqa
+    pwd = user.password
+
+    pwd = pwd.encode('utf-8')
+    input_pwd = userdata['pwd'].encode('utf-8')
+
+    if not bcrypt.checkpw(input_pwd, pwd):
         error_message = 'Неправильный пароль'
         return render_template('enterPage.html',
                                userdata=userdata,
                                error_message=error_message)
 
-    return render_template('bookverse.html')
+    login_user(user, remember=False)
+    return redirect(url_for('main.home'))

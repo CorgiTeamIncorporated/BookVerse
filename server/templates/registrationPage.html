@@ -20,29 +20,43 @@
 				
 				<form method="POST">
 					<div class="enter-wrap">
-						<div class="field-name"><p> Имя пользователя: </p></dir>
+						<div class="field-name">
+							<p> Имя пользователя: </p>
+						</div>
+						
 						<div class="login-wrap input-wrap">
 							<input class="login-input enter-input" type="text" id="login" name="login" placeholder="Имя пользователя" value="{{ userdata['login'] }}" maxlength="32" required>
 						</div>
 						<div class="info">Имя пользователя должно содержать не менее<br>
 										 трёх знаков; может включать буквы латинского<br>
-										 	 алфавита, цифры и нижние подчёркивания</div>
+										 	 алфавита, цифры и нижние подчёркивания
+						</div>
 						
-						<div class="field-name"><p> Почта: </p></dir>
+						<div class="field-name">
+							<p> Почта: </p>
+						</div>
+						
 						<div class="email-wrap input-wrap">
 							<input class="email-input enter-input" type="text" id="email" name="email" placeholder="Почта" value="{{ userdata['email'] }}" required>
 						</div>
 						
-						<div class="field-name"><p> Пароль: </p></dir>
+						<div class="field-name">
+							<p> Пароль: </p>
+						</div>
+						
 						<div class="password-wrap input-wrap">
 							<input class="password-input enter-input" type="password" id="pwd" name="pwd" placeholder="Пароль" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}" required>
 							<i class="fa fa-eye" id="toggle_pwd"></i>
 						</div>
 						<div class="info">Пароль должен содержать не менее восьми<br> 
 										знаков, включать строчные и заглавные буквы,<br>
-										       цифры и специальные символы</div>
+										       цифры и специальные символы
+						</div>
 
-						<div class="field-name"><p> Подтвердите пароль: </p></dir>
+						<div class="field-name">
+							<p> Подтвердите пароль: </p>
+						</div>
+						
 						<div class="password-wrap input-wrap">
 							<input class="password-input enter-input" type="password" id="pwd_rep" name="pwd_rep" placeholder="Повторите пароль" required>
 							<i class="fa fa-eye" id="toggle_pwd_rep"></i>
@@ -52,7 +66,9 @@
 							<input class="enter-button" type="submit" id="submit_btn" value="Зарегистрироваться"></input>
 						</div>
 
-						<div class="error-message"> {{ error_message }} </div>
+						<div class="error-message"> 
+							{{ error_message }} 
+						</div>
 
 						<script src="static/js/psw_toggling.js"></script>
 						<script src="static/js/reg_data_checking.js"></script>

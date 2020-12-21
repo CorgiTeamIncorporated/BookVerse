@@ -71,7 +71,7 @@ def test_books_series():
     book = _factory.new_book()
     series = _factory.new_series()
 
-    book.series = series
+    book.series.append(series)
 
     db.session.add(book)
     db.session.commit()
@@ -118,4 +118,16 @@ def test_users_reviews():
     review.user = user
 
     db.session.add(review)
+    db.session.commit()
+
+
+def tests_users_redactor_choice():
+    book = _factory.new_book()
+    user = _factory.new_user()
+    redactor_choice = _factory.new_redactor_choice()
+
+    redactor_choice.book = book
+    redactor_choice.user = user
+
+    db.session.add(redactor_choice)
     db.session.commit()

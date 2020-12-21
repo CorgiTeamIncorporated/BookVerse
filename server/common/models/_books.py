@@ -1,4 +1,15 @@
-from common.database import db, association_proxy, postgresql # noqa
+from common.database import db, postgresql
+
+
+series_of_books_table = db.Table(
+    'series_of_books',
+    db.Column('book_id', db.Integer,
+              db.ForeignKey('books.book_id'),
+              primary_key=True),
+    db.Column('series_id', db.Integer,
+              db.ForeignKey('series.series_id'),
+              primary_key=True)
+)
 
 
 translators_of_books_table = db.Table(
@@ -45,12 +56,10 @@ genres_of_books_table = db.Table(
 )
 
 
-class Books(db.Model):
+class Book(db.Model):
     __tablename__ = 'books'
 
     id = db.Column('book_id', db.Integer, primary_key=True)
-    series_id = db.Column(db.Integer,
-                          db.ForeignKey('series.series_id'))
     name = db.Column('book_name', db.String(128))
     rating_sum = db.Column(db.Integer)
     rating_num = db.Column(db.Integer)
@@ -60,14 +69,20 @@ class Books(db.Model):
 
     series = db.relationship('Series')
 
+    series = db.relationship(
+        'Series',
+        secondary=series_of_books_table,
+        lazy='subquery'
+    )
+
     translators = db.relationship(
-        'Translators',
+        'Translator',
         secondary=translators_of_books_table,
         lazy='subquery'
     )
 
     tags = db.relationship(
-        'Tags',
+        'Tag',
         secondary=tags_of_books_table,
         lazy='subquery'
     )
@@ -78,14 +93,14 @@ class Books(db.Model):
     )
 
     authors = db.relationship(
-        'Authors',
+        'Author',
         secondary=authors_of_books_table,
         back_populates="books",
         lazy='subquery'
     )
 
     genres = db.relationship(
-        'Genres',
+        'Genre',
         secondary=genres_of_books_table,
         lazy='subquery'
     )
@@ -95,38 +110,8 @@ class Books(db.Model):
         lazy='subquery'
     )
 
-    ratings = db.relationship('Ratings')
-    reviews = db.relationship('Reviews')
-
-    def as_json(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'series': self.series.as_json(),
-            'rating_sum': self.rating_sum,
-            'rating_num': self.rating_num,
-            'publish_date': self.publish_date,
-            'preamble': self.preamble,
-            'cover_path': self.cover_path,
-            'translators': [
-                translator.as_json() for translator in self.translators
-            ],
-            'tags': [
-                tag.as_json() for tag in self.tags
-            ],
-            'awards': [
-                award.as_json_award() for award in self.books_awards
-            ],
-            'authors': [
-                author.as_json() for author in self.authors
-            ],
-            'genres': [
-                genre.as_json() for genre in self.genres
-            ],
-            'stores': [
-                store.as_json_store() for store in self.books_stores
-            ]
-        }
+    ratings = db.relationship('Rating')
+    reviews = db.relationship('Review')
 
 
 class Series(db.Model):
@@ -137,66 +122,39 @@ class Series(db.Model):
     description = db.Column(db.Text)
 
     books = db.relationship(
-        'Books',
+        'Book',
+        secondary=series_of_books_table,
         lazy='subquery'
     )
 
-    def as_json(self):
-        return {
-            'id': self.id,
-            'name': self.category,
-            'description': self.description,
-            'books': [
-                book.as_json() for book in self.books
-            ]
-        }
 
-
-class Translators(db.Model):
+class Translator(db.Model):
     __tablename__ = 'translators'
 
     id = db.Column('translator_id', db.Integer, primary_key=True)
     name = db.Column('translator_name', db.String(48))
 
     books = db.relationship(
-        'Books',
+        'Book',
         secondary=translators_of_books_table,
         lazy='subquery'
     )
 
-    def as_json(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'books': [
-                book.as_json() for book in self.books
-            ]
-        }
 
-
-class Tags(db.Model):
+class Tag(db.Model):
     __tablename__ = 'tags'
 
     id = db.Column('tag_id', db.Integer, primary_key=True)
     name = db.Column('tag_name', db.String(32))
 
     books = db.relationship(
-        'Books',
+        'Book',
         secondary=tags_of_books_table,
         lazy='dynamic'
     )
 
-    def as_json(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'books': [
-                book.as_json() for book in self.books
-            ]
-        }
 
-
-class Awards(db.Model):
+class Award(db.Model):
     __tablename__ = 'awards'
 
     id = db.Column('award_id', db.Integer, primary_key=True)
@@ -207,16 +165,6 @@ class Awards(db.Model):
         'BooksAwards',
         lazy='dynamic'
     )
-
-    def as_json(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'description': self.description,
-            'books': [
-                book.as_json_book() for book in self.books_awards
-            ]
-        }
 
 
 class BooksAwards(db.Model):
@@ -230,74 +178,43 @@ class BooksAwards(db.Model):
                          primary_key=True)
     date = db.Column('award_date', db.DateTime)
 
-    book = db.relationship('Books')
-    award = db.relationship('Awards')
-
-    def as_json_award(self):
-        return {
-            'award': self.award.as_json(),
-            'date': self.date
-        }
-
-    def as_json_book(self):
-        return {
-            'book': self.book.as_json(),
-            'date': self.date
-        }
+    book = db.relationship('Book')
+    award = db.relationship('Award')
 
 
-class Authors(db.Model):
+class Author(db.Model):
     __tablename__ = 'authors'
 
     id = db.Column('author_id', db.Integer, primary_key=True)
     name = db.Column('author_name', db.String(48))
     bio = db.Column(db.Text)
     photo_path = db.Column(db.String(32))
+    popularity = db.Column(db.Integer)
 
     books = db.relationship(
-        'Books',
+        'Book',
         secondary=authors_of_books_table,
         back_populates="authors",
         lazy='subquery'
     )
 
-    def as_json(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'bio': self.bio,
-            'photo_path': self.photo_path,
-            'books': [
-                book.as_json() for book in self.books
-            ]
-        }
 
-
-class Genres(db.Model):
+class Genre(db.Model):
     __tablename__ = 'genres'
 
     id = db.Column('genre_id', db.Integer, primary_key=True)
     name = db.Column('genre_name', db.String(32))
     description = db.Column(db.Text)
+    popularity = db.Column(db.Integer)
 
     books = db.relationship(
-        'Books',
+        'Book',
         secondary=genres_of_books_table,
         lazy='dynamic'
     )
 
-    def as_json(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'description': self.description,
-            'books': [
-                book.as_json() for book in self.books
-            ]
-        }
 
-
-class Stores(db.Model):
+class Store(db.Model):
     __tablename__ = 'stores'
 
     id = db.Column('store_id', db.Integer, primary_key=True)
@@ -308,16 +225,6 @@ class Stores(db.Model):
         'BooksStores',
         lazy='dynamic'
     )
-
-    def as_json(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'logo_path': self.logo_path,
-            'books': [
-                book.as_json_book() for book in self.books_stores
-            ]
-        }
 
 
 class BooksStores(db.Model):
@@ -332,19 +239,5 @@ class BooksStores(db.Model):
     price = db.Column(postgresql.MONEY)
     product_url = db.Column(db.String(256))
 
-    book = db.relationship('Books')
-    store = db.relationship('Stores')
-
-    def as_json_store(self):
-        return {
-            'store': self.store.as_json(),
-            'price': self.price,
-            'product_url': self.product_url
-        }
-
-    def as_json_book(self):
-        return {
-            'book': self.book.as_json(),
-            'price': self.price,
-            'product_url': self.product_url
-        }
+    book = db.relationship('Book')
+    store = db.relationship('Store')

@@ -1,29 +1,11 @@
-create type rank as enum ('user', 'moderator', 'reviewer');
-
-create table genres
-(
-    genre_id    smallserial not null
-        constraint genres_pk
-            primary key,
-    genre_name  varchar(32),
-    description text
-);
-
-create table series
-(
-    series_id   serial not null
-        constraint series_pk
-            primary key,
-    series_name varchar(256),
-    description text
-);
+create type rank as enum ('user', 'moderator', 'redactor', 'admin');
 
 create table books
 (
     book_id      serial not null
         constraint books_pk
             primary key,
-    book_name    varchar(128),
+    book_name    varchar(256),
     rating_sum   integer
         constraint books_rating_sum_check
             check (rating_sum >= 0),
@@ -33,6 +15,16 @@ create table books
     publish_date date,
     preamble     text,
     cover_path   varchar(256)
+);
+
+create table genres
+(
+    genre_id    smallserial not null
+        constraint genres_pk
+            primary key,
+    genre_name  varchar(64),
+    description text,
+    popularity  integer default 0
 );
 
 create table genres_of_books
@@ -45,6 +37,27 @@ create table genres_of_books
             references genres,
     constraint genres_of_books_pk
         primary key (book_id, genre_id)
+);
+
+create table series
+(
+    series_id   serial not null
+        constraint series_pk
+            primary key,
+    series_name varchar(256),
+    description text
+);
+
+create table series_of_books
+(
+    book_id   integer not null
+        constraint series_of_books_books_book_id_fk
+            references books,
+    series_id integer not null
+        constraint series_of_books_series_series_id_fk
+            references series,
+    constraint series_of_books_pk
+        primary key (book_id, series_id)
 );
 
 create table translators
@@ -75,7 +88,7 @@ create table tags
     tag_id   smallserial not null
         constraint tags_pk
             primary key,
-    tag_name varchar(32)
+    tag_name   varchar(64)
 );
 
 create unique index tags_tag_id_uindex
@@ -125,7 +138,8 @@ create table authors
             primary key,
     author_name varchar(48),
     bio         text,
-    photo_path  varchar(256)
+    photo_path  varchar(256),
+    popularity  integer default 0
 );
 
 create unique index authors_author_id_uindex
@@ -240,14 +254,17 @@ create table ratings
         primary key (user_id, book_id)
 );
 
-create table series_of_books
+create table redactors_choice
 (
-    book_id   integer not null
-        constraint series_of_books_books_book_id_fk
+    user_id    integer not null
+        constraint redactors_choice_users_user_id_fk
+            references users,
+    book_id    integer not null
+        constraint redactors_choice_books_book_id_fk
             references books,
-    series_id integer not null
-        constraint series_of_books_series_series_id_fk
-            references series,
-    constraint series_of_books_pk
-        primary key (book_id, series_id)
+    added_date date    not null,
+    constraint redactors_choice_pk
+        primary key (user_id, book_id)
 );
+
+insert into stores (store_name) values ('Литрес');
