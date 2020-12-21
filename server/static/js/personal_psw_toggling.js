@@ -1,3 +1,17 @@
+var togglePasswordLast = document.querySelector('#toggle_pwd_last');
+var password_last = document.querySelector('#pwd_last');
+
+
+if (password_last !== null && password_last !== undefined) { 
+    togglePasswordLast.addEventListener('click', function (e) {
+        // toggle the type attribute
+        const type = password_last.getAttribute('type') === 'password' ? 'text' : 'password';
+        password_last.setAttribute('type', type);
+        // toggle the eye slash icon
+        this.classList.toggle('fa-eye-slash');
+    });
+}
+
 var togglePassword = document.querySelector('#toggle_pwd');
 var password = document.querySelector('#pwd');
 
