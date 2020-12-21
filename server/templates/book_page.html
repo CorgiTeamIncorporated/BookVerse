@@ -12,11 +12,11 @@
     </head>
 
     <body>
-    	{% if current_user.is_authenticated %}
-			{% include "headerRegUser.html" %}
-		{% else %}
-			{% include "headerUnregUser.html" %}
-		{% endif %}
+        {% if current_user.is_authenticated %}
+            {% include "headerRegUser.html" %}
+        {% else %}
+            {% include "headerUnregUser.html" %}
+        {% endif %}
 
         <div class="page-body">
             <div class="wrap page-container">
