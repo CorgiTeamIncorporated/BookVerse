@@ -10,9 +10,7 @@
 	<body>
 		{% if current_user.is_authenticated %}
 			{% include "headerRegUser.html" %}
-		{% endif %}
-
-		{% if not current_user.is_authenticated %}
+        {% else %}
 			{% include "headerUnregUser.html" %}
 		{% endif %}
 
@@ -129,7 +127,7 @@
 						<a href=# class="top-link">Топ 10</a>
 
 						{% for book in best_books %}
-							<a href=# class="book-top-link"> {{ book.name }} </a>
+							<a href="{{ url_for('main.book', book_id=book.id) }}" class="book-top-link"> {{ book.name }} </a>
 						{% endfor %}			
 					</div>
 					

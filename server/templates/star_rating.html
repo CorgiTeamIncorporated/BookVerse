@@ -1,0 +1,20 @@
+{% set normalized_rating = rating * max_stars / max_rating %}
+{% set full_stars = normalized_rating | int %}
+{% set empty_stars = max_stars - 1 - full_stars %}
+{% set last_star_percent = normalized_rating % 1 * 100 %}
+
+{% for _ in range(full_stars) %}
+    <i class="fa fa-star stars-out">
+        <i class="fa fa-star stars-in" style="width: 100%;"></i>
+    </i>
+{% endfor %}
+
+<i class="fa fa-star stars-out">
+    <i class="fa fa-star stars-in" style="width: {{ last_star_percent }}%;"></i>
+</i>
+
+{% for _ in range(empty_stars) %}
+    <i class="fa fa-star stars-out">
+        <i class="fa fa-star stars-in" style="width: 0%;"></i>
+    </i>
+{% endfor %}

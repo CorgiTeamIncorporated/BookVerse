@@ -1,6 +1,6 @@
 import logging
 
-from flask import Flask
+from flask import Flask, redirect, url_for
 
 from blueprints.auth import auth
 from blueprints.main import main
@@ -23,6 +23,12 @@ lm.init_app(app)
 
 app.register_blueprint(auth)
 app.register_blueprint(main)
+
+
+@app.route('/')
+def redirect_to_home():
+    return redirect(url_for('main.home'))
+
 
 if __name__ == "__main__":
     app.run(port=8080, debug=True)
