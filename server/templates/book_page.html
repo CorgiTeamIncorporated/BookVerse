@@ -257,32 +257,32 @@
                                         <div class="person-book-rating">
                                             <div class="star-rating">
                                             <div class="star-rating__wrap">
-                                                <input class="star-rating__input" id="star-rating-5" form="review-form" type="radio" name="rating" value="5">
+                                                <input class="star-rating__input" id="star-rating-5" form="review-form" type="radio" name="rating" value="10">
                                                 <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-5" title="5 out of 5 stars"></label>
 
-                                                <input class="star-rating__input" id="star-rating-4" form="review-form" type="radio" name="rating" value="4">
+                                                <input class="star-rating__input" id="star-rating-4" form="review-form" type="radio" name="rating" value="8">
                                                 <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-4" title="4 out of 5 stars"></label>
 
-                                                <input class="star-rating__input" id="star-rating-3" form="review-form" type="radio" name="rating" value="3">
+                                                <input class="star-rating__input" id="star-rating-3" form="review-form" type="radio" name="rating" value="6">
                                                 <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-3" title="3 out of 5 stars"></label>
 
-                                                <input class="star-rating__input" id="star-rating-2" form="review-form" type="radio" name="rating" value="2">
+                                                <input class="star-rating__input" id="star-rating-2" form="review-form" type="radio" name="rating" value="4">
                                                 <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-2" title="2 out of 5 stars"></label>
 
-                                                <input class="star-rating__input" id="star-rating-1" form="review-form" type="radio" name="rating" value="1">
+                                                <input class="star-rating__input" id="star-rating-1" form="review-form" type="radio" name="rating" value="2">
                                                 <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-1" title="1 out of 5 stars"></label>
                                             </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    
                                     <div class="review-input-wrap">
-                                        <form id="review-form">
+                                        <form id="review-form" action="{{ url_for('main.review') }}" method="POST">
                                             <div class="textarea-wrap">
-                                                <textarea class="review-input" form="review-form"></textarea>
+                                                <textarea class="review-input" form="review-form" name="text"></textarea>
                                             </div>
 
+                                            <input type="hidden" name="book_id" value="{{ book.id }}">
                                             <input class="send-button" type="submit" value="Отправить рецензию">
                                         </form>
                                     </div>

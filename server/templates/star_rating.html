@@ -9,9 +9,11 @@
     </i>
 {% endfor %}
 
-<i class="fa fa-star stars-out">
-    <i class="fa fa-star stars-in" style="width: {{ last_star_percent }}%;"></i>
-</i>
+{% if full_stars != max_stars %}
+    <i class="fa fa-star stars-out">
+        <i class="fa fa-star stars-in" style="width: {{ last_star_percent }}%;"></i>
+    </i>
+{% endif %}
 
 {% for _ in range(empty_stars) %}
     <i class="fa fa-star stars-out">
