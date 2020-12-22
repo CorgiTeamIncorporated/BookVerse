@@ -36,6 +36,10 @@ input {
 	font-size: 35px;
 }
 
+.header-name a{
+	color: inherit;
+}
+
 .header-name-first {
 	transform: translateY(8px);
 }
