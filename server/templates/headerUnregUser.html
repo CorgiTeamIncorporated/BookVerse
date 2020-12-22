@@ -16,17 +16,17 @@
 					</div>
 					
 					<div class="header-right">
-						<form class="header-search">
-							<input class="header-search-input" type="text" placeholder="Название книги, имя автора">
-							<input class="header-search-button" type="submit" value="Поиск">
+						<form class="header-search" action='{{ url_for('main.search') }}' method="POST">
+							<input class="header-search-input" type="text" name="query" id="query" placeholder="Название книги, имя автора">
+							<input class="header-search-button" type="submit" value="Поиск"></input>
 						</form>
 					
 						<div class="header-element-wrap header-element-vertical-wrap">
-								<input class="reg-button" type="submit" value="Зарегистрироваться" onclick="location.href='{{ url_for('auth.join') }}';">
+								<input class="reg-button" type="submit" value="Зарегистрироваться" onclick="window.location.href='{{ url_for('auth.join') }}';"></input>
 						</div>
 								
 						<div class="header-element-wrap">
-							<input class="enter-button" type="submit" value="Войти" onclick="location.href='{{ url_for('auth.login') }}';">
+							<input class="enter-button" type="submit" value="Войти" onclick="window.location.href='{{ url_for('auth.login') }}';"></input>
 						</div>
 					</div>
 				</div>

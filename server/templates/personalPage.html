@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link rel="stylesheet" href="/static/personalPage.css">
+		<link rel="stylesheet" href="/static/css/font-awesome.min.css">
+		<script src="/static/js/MakeVisible.js"></script>
+
+	</head>
+	
+	<body>
+		
+		<div class="page-body">
+			<div class="wrap page-container">
+				<div class="main-page">
+					
+					<div class="information-box">
+					
+						<div class="profile-img-wrap">
+							<div class ="profile-img">
+								<img src="default_profile_image.png" class="">
+								
+								<button class="photo-change-button">
+									<i class="photo-icon-pen fa fa-pencil" aria-hidden="true"></i>
+								</button>
+							</div>
+						</div>
+						
+						<div class="profile-inform-wrap">
+								<div class="name-wrap">
+									<div class="name">
+										pnthrLeo
+									
+										<button class="change-button name-change-button" onClick ="MakeVisible('name-input')">
+											<i class="icon-pen fa fa-pencil" aria-hidden="true"></i>
+										</button>
+									</div>
+									
+									<form class="name-input-wrap input-wrap" id="name-input" style="visibility: hidden; height: 0px;">
+										<input class="name-input inf-input" type="text" placeholder="pnthrLeo">
+										<input class="apply-button" type="submit" value="Применить"></input>
+									</form>
+								</div>
+								
+								
+								<div class="inform-paragraph">
+									<div class="email-par paragraph">
+										E-mail: 
+									</div>
+									
+									<div class="email-inf">
+										<div class="email">test@mail.com</div>
+										
+										<button class="change-button" onClick ="MakeVisible('email-input')">
+											<i class="icon-pen fa fa-pencil" aria-hidden="true"></i>
+										</button>
+									</div>
+									
+									<form class="email-input-wrap input-wrap" id="email-input" style="visibility: hidden; height: 0px;">
+										<input class="email-input inf-input" type="text" placeholder="test@mail.com">
+										<input class="apply-button" type="submit" value="Применить"></input>
+									</form>									
+								</div>
+								
+								<div class="inform-paragraph">
+									
+									<div class="password-par paragraph">
+										Пароль: 
+									</div>
+									
+									<button class="change-button" onClick ="MakeVisible('password-input')">
+										Изменить пароль
+										<i class="icon-pen fa fa-pencil" aria-hidden="true"></i>
+									</button>
+									
+									<form class="password-input-wrap input-wrap" id="password-input" style="visibility: hidden; height: 0px;">
+										<div class="field-name">
+											Ввведите старый пароль:
+										</div>
+										
+										<div class="password-wrap">
+											<input class="password-input inf-input" type="password" id="pwd_last" name="pwd_last" placeholder="Старый пароль">
+											<i class="fa fa-eye" id="toggle_pwd_last"></i>
+										</div>
+										
+										<div class="field-name">
+											Введите новый пароль:
+										</div>
+										
+										<div class="password-wrap">
+											<input class="password-input inf-input" type="password" id="pwd" name="pwd" placeholder="Новый пароль" required>
+											<i class="fa fa-eye" id="toggle_pwd"></i>
+										</div>
+
+										<div class="field-name">
+											Повторите пароль:
+										</div>
+										
+										<div class="last-line-password"	>								
+											<div class="password-wrap">
+												<input class="password-input inf-input" type="password" id="pwd_rep" name="pwd_rep" placeholder="Повторите пароль" required>
+												<i class="fa fa-eye" id="toggle_pwd_rep"></i>
+											</div>
+												
+											<div class="apply-button-wrap">
+												<input class="apply-button" type="submit" id="submit_btn" value="Применить"></input>
+											</div>
+										</div>
+
+										<div class="error-message"> 
+											{{ error_message }} 
+										</div>
+
+										<script src="static/js/personal_psw_toggling.js"></script>
+										<script src="static/js/reg_data_checking.js"></script>
+										
+									</form>
+								</div>
+								
+						</div>
+					</div>
+					
+					
+					<div class="books-wrap">
+						<div class="book-topic">
+							Мои книги
+						</div>
+						
+						<div class="read-now-wrap read-wrap">
+							<div class="topic-header">
+								<div class="topic">Сейчас читаю</div>														
+							</div>
+							
+							<div class="book-list">
+								<div class="book">
+									<a href=# class="book-link">Огонь и сера</a>
+									
+									<button class="delete-button">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</div>
+								
+								<div class="book">
+									<a href=# class="book-link">Огонь и сера</a>
+									
+									<button class="delete-button">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</div>
+								
+								<div class="book">
+									<a href=# class="book-link">Огонь и сера</a>
+									
+									<button class="delete-button">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</div>
+								
+								<div class="book">
+									<a href=# class="book-link">Огонь и сера</a>
+									
+									<button class="delete-button">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</div>
+								
+								<div class="book">
+									<a href=# class="book-link">Огонь и сера</a>
+									
+									<button class="delete-button">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</div>
+								
+								<div class="book">
+									<a href=# class="book-link">Огонь и сера</a>
+									
+									<button class="delete-button">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div class="read-now-wrap read-wrap">
+							<div class="topic-header">
+								<div class="topic">Планирую прочитать</div>
+							</div>
+							
+							<div class="book-list">
+								<div class="book">
+									<a href=# class="book-link">Огонь и сера</a>
+									
+									<button class="delete-button">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</div>
+								
+								<div class="book">
+									<a href=# class="book-link">Огонь и сера</a>
+									
+									<button class="delete-button">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</div>
+								
+								<div class="book">
+									<a href=# class="book-link">Огонь и сера</a>
+									
+									<button class="delete-button">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</div>
+								
+								<div class="book">
+									<a href=# class="book-link">Огонь и сера</a>
+									
+									<button class="delete-button">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</div>
+								
+								<div class="book">
+									<a href=# class="book-link">Огонь и сера</a>
+									
+									<button class="delete-button">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</div>
+								
+								<div class="book">
+									<a href=# class="book-link">Огонь и сера</a>
+									
+									<button class="delete-button">
+										<i class="fa fa-trash" aria-hidden="true"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					
+					
+					
+				</div>
+									
+			
+			
+				<div class="blue-column">
+						
+					<div class="internal-blue-column">
+						<div class="column-topic">
+							Рекомендуем к прочтению
+						</div>
+							
+						<div class="img-wrap column-img">
+							<a href="#">
+								<img class="book-cover" src="">
+							</a>
+							
+							<div class="book-wrap">
+								<a href="#" class="book-name">Реликварий</a>
+							</div>
+						</div>
+						
+						<div class="img-wrap column-img">
+							<a href="#">
+								<img class="book-cover" src="">
+							</a>
+							<div class="book-wrap">
+								<a href="#" class="book-name">Кабинет диковин</a>
+							</div>
+						</div>
+						
+						<div class="deployment-wrap">
+							<a class="deployment" href="javascript://" onclick="">Развернуть</a>
+						</div>
+					</div>
+					
+				</div>
+				
+				
+			</div>
+		</div>
+	</body>
+</html>

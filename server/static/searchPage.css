@@ -182,18 +182,20 @@ li {
 
 .add-remote-button{
 	height: 10px;
-	padding: 1px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
 	background-color: transparent;
 	border: 0px;
 	border-radius: 4px;
 	margin-right: 5px;
 	font-size: 90%;
 }
+
 .add-remote-button:focus{
 	border: 0;
 	outline:0;
 	color: #a67424;
 }
+
 .add-remote-button:active .icon{
 	color: #a67424;
 }

@@ -1,6 +1,10 @@
 from common.database import db, postgresql
+from sqlalchemy import cast, func
+from ._utils import create_tsvector
+
 from sqlalchemy import case
 from sqlalchemy.ext.hybrid import hybrid_property
+
 
 series_of_books_table = db.Table(
     'series_of_books',
@@ -114,6 +118,10 @@ class Book(db.Model):
     ratings = db.relationship('Rating')
     reviews = db.relationship('Review')
 
+    __ts_vector__ = create_tsvector(
+        cast(func.coalesce(name, ''), postgresql.TEXT)
+    )
+
     @hybrid_property
     def average_rating(self):
         if self.rating_num == 0:
@@ -140,6 +148,10 @@ class Series(db.Model):
         lazy='subquery'
     )
 
+    __ts_vector__ = create_tsvector(
+        cast(func.coalesce(name, ''), postgresql.TEXT)
+    )
+
 
 class Translator(db.Model):
     __tablename__ = 'translators'
@@ -164,6 +176,10 @@ class Tag(db.Model):
         'Book',
         secondary=tags_of_books_table,
         lazy='dynamic'
+    )
+
+    __ts_vector__ = create_tsvector(
+        cast(func.coalesce(name, ''), postgresql.TEXT)
     )
 
 
@@ -211,6 +227,10 @@ class Author(db.Model):
         lazy='subquery'
     )
 
+    __ts_vector__ = create_tsvector(
+        cast(func.coalesce(name, ''), postgresql.TEXT)
+    )
+
 
 class Genre(db.Model):
     __tablename__ = 'genres'
@@ -224,6 +244,10 @@ class Genre(db.Model):
         'Book',
         secondary=genres_of_books_table,
         lazy='dynamic'
+    )
+
+    __ts_vector__ = create_tsvector(
+        cast(func.coalesce(name, ''), postgresql.TEXT)
     )
 
 

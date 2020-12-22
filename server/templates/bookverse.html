@@ -18,8 +18,8 @@
 			<div class="wrap page-container">
 				<div class="main-page">
 					<div class="input-box">
-						<form>
-							<input class="search-input" type="text" placeholder="Название книги, имя автора">
+						<form action='{{ url_for('main.search') }}' method="POST">
+							<input class="search-input" type="text" name="query" id="query" placeholder="Название книги, имя автора">
 							<div class="button-box">
 								<input class="search-button" type="submit" value="Поиск">
 								<button class="search-button">Случайная книга</button>
