@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask.templating import render_template
 
-from ._book import get_book_info
+from ._book import get_book_info, post_review
 from ._home import home
 
 main = Blueprint('main', __name__)
@@ -22,3 +22,5 @@ main.add_url_rule('/home', 'home',
                   home, methods=['GET'])
 main.add_url_rule('/book/<int:book_id>', 'book',
                   get_book_info, methods=['GET'])
+main.add_url_rule('/review', 'review',
+                  post_review, methods=['POST'])
