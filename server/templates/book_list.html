@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link rel="stylesheet" href="/static/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/static/book_list.css">
+	</head>
+	
+	<body>
+		{% for item in book_list %}
+			<div class="boоks-topic">
+				<div class="book-box">
+					<div class="img-wrap">
+						<img class="book-cover" src="{{ item.cover_path }}">
+					</div>
+					
+					<div class="inf-wrap">
+						<div class="book-header">
+							<div class="book-title-author">
+								<a href=# class="book-link">{{ item.book_name }} </a>
+								{% for author in item.authors %}
+									<a href=# class="book-link book-author"> {{ author }} </a>
+								{% endfor %}		
+							</div>
+							
+							<div class="stars">
+								<i class="fa fa-star stars-out">
+									<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100, 0) | max, 100) | min }}%;"></i>
+								</i>
+								<i class="fa fa-star stars-out">
+									<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 100, 0) | max, 100) | min }}%;"></i>
+								</i>
+								<i class="fa fa-star stars-out">
+									<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 200, 0) | max, 100) | min }}%;"></i>
+								</i>
+								<i class="fa fa-star stars-out">
+									<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 300, 0) | max, 100) | min }}%;"></i>
+								</i>
+								<i class="fa fa-star stars-out">
+									<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 400, 0) | max, 100) | min }}%;"></i>
+								</i>
+								<i class="fa fa-star stars-out">
+									<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 500, 0) | max, 100) | min }}%;"></i>
+								</i>
+								<i class="fa fa-star stars-out">
+									<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 600, 0) | max, 100) | min }}%;"></i>
+								</i>
+								<i class="fa fa-star stars-out">
+									<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 700, 0) | max, 100) | min }}%;"></i>
+								</i>
+								<i class="fa fa-star stars-out">
+									<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 800, 0) | max, 100) | min }}%;"></i>
+								</i>
+								<i class="fa fa-star stars-out">
+									<i class="fa fa-star stars-in" style="width: {{ ((item.book_rating*100 - 900, 0) | max, 100) | min }}%;"></i>
+								</i>
+							</div>
+						</div>
+						
+						<div class="tags">
+							{% for tag in item.tags %}
+								<a href=# class="book-tag"> #{{ tag.name }} </a>
+							{% endfor %}
+						</div>
+						
+						<div class="description">
+							{{ item.description }}
+						</div>
+					</div>	
+				</div>
+			</div>
+		{% endfor %}					
+	</body>
+</html>

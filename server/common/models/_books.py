@@ -1,4 +1,6 @@
 from common.database import db, postgresql
+from sqlalchemy import cast, func
+from ._utils import create_tsvector
 
 
 series_of_books_table = db.Table(
@@ -113,6 +115,10 @@ class Book(db.Model):
     ratings = db.relationship('Rating')
     reviews = db.relationship('Review')
 
+    __ts_vector__ = create_tsvector(
+        cast(func.coalesce(name, ''), postgresql.TEXT)
+    )
+
 
 class Series(db.Model):
     __tablename__ = 'series'
@@ -125,6 +131,10 @@ class Series(db.Model):
         'Book',
         secondary=series_of_books_table,
         lazy='subquery'
+    )
+
+    __ts_vector__ = create_tsvector(
+        cast(func.coalesce(name, ''), postgresql.TEXT)
     )
 
 
@@ -151,6 +161,10 @@ class Tag(db.Model):
         'Book',
         secondary=tags_of_books_table,
         lazy='dynamic'
+    )
+
+    __ts_vector__ = create_tsvector(
+        cast(func.coalesce(name, ''), postgresql.TEXT)
     )
 
 
@@ -198,6 +212,10 @@ class Author(db.Model):
         lazy='subquery'
     )
 
+    __ts_vector__ = create_tsvector(
+        cast(func.coalesce(name, ''), postgresql.TEXT)
+    )
+
 
 class Genre(db.Model):
     __tablename__ = 'genres'
@@ -211,6 +229,10 @@ class Genre(db.Model):
         'Book',
         secondary=genres_of_books_table,
         lazy='dynamic'
+    )
+
+    __ts_vector__ = create_tsvector(
+        cast(func.coalesce(name, ''), postgresql.TEXT)
     )
 
 

@@ -3,7 +3,6 @@ body {
 	margin: 0;
 	padding: 0;
 	background-color: #ffe3b4;
-		
 }
 
 input {
@@ -98,7 +97,7 @@ input {
 	background-color: #4C678a;
 }
 
-.icon{
+.header .icon{
 	font-size: 180% !important;
 	color: #5C3901;
 	margin-right: 10px;
