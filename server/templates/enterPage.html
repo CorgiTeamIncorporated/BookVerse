@@ -30,7 +30,7 @@
 						</div>
 							
 						<div class="enter-button-wrap input-wrap">
-							<input class="enter-button" type="submit" value="Войти"></input>
+							<input class="enter-button" type="submit" value="Войти">
 						</div>
 						
 						<div class="link-wrap">
@@ -38,13 +38,13 @@
 						</div>
 
 						<div class="error-message"> {{ error_message }} </div>
-						<script src="static/js/psw_toggling.js"></script>
+						<script src="/static/js/psw_toggling.js"></script>
 					</div>
 				</form>
 				
 				<div class="registration">
 					У вас нет аккаунта?
-					<a href=./join class="reg-transition">Зарегистрироваться</a>
+					<a href="{{ url_for('auth.join') }}" class="reg-transition">Зарегистрироваться</a>
 				</div>
 				
 				<div class="account-enter">
@@ -53,21 +53,21 @@
 				
 				<div class="transitions">
 					<button class="vk-button tran-button">				
-						<img src="static/icons/Vk-logo.png" class="vk-img logo">
+						<img src="/static/icons/Vk-logo.png" class="vk-img logo">
 						<div class="log-value">
 							Vk
 						</div>
 					</button>
 									
 					<button class="google-button tran-button">
-						<img src="static/icons/logo-gmail1.png" class="google-img logo">
+						<img src="/static/icons/logo-gmail1.png" class="google-img logo">
 						<div class="log-value">
 							Gmail
 						</div>
 					</button>
 									
 					<button class="yandex-button tran-button">
-						<img src="static/icons/Yandex.png" class="yandex-img logo">
+						<img src="/static/icons/Yandex.png" class="yandex-img logo">
 						<div class="log-value">
 							Яндекс
 						</div>

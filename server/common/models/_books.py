@@ -2,6 +2,9 @@ from common.database import db, postgresql
 from sqlalchemy import cast, func
 from ._utils import create_tsvector
 
+from sqlalchemy import case
+from sqlalchemy.ext.hybrid import hybrid_property
+
 
 series_of_books_table = db.Table(
     'series_of_books',
@@ -118,6 +121,18 @@ class Book(db.Model):
     __ts_vector__ = create_tsvector(
         cast(func.coalesce(name, ''), postgresql.TEXT)
     )
+
+    @hybrid_property
+    def average_rating(self):
+        if self.rating_num == 0:
+            return 0.0
+        return self.rating_sum / self.rating_num
+
+    @average_rating.expression
+    def average_rating(cls):
+        return case([
+            (cls.rating_num != 0, cls.rating_sum / cls.rating_num)
+        ], else_=0.0)
 
 
 class Series(db.Model):
