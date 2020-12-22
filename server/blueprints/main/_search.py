@@ -64,6 +64,7 @@ def get_books(num, query):
 
         book_list.append({
             'book_name': book.name,
+            'book_href': '/book/' + str(book.id),
             'authors': authors,
             'tags': book.genres + book.tags,
             'description': book.preamble,

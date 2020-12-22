@@ -44,6 +44,7 @@ def get_redaction_choice(num):
 
         redaction_choice.append({
             'book_name': book.name,
+            'book_href': '/book/' + str(book.id),
             'authors': authors,
             'tags': book.tags,
             'description': book.preamble,
