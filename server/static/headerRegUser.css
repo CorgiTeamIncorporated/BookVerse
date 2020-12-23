@@ -1,86 +1,45 @@
-body {
-	border: 0;
-	margin: 0;
-	padding: 0;
-	background-color: #ffe3b4;
+.header {
+	background-color: #ffc86f;
+	box-shadow: 0 0 15px 0 #444444;
+	padding: 0 10px;
 }
 
-input {
-	border: 0;
-	border-radius: 4px;
-	box-sizing: border-box;
-}
-
-.wrap {
+.header__wrap {
 	max-width: 1010px;
 	margin: 0 auto;
 	font-family: Georgia;
 }
 
-.header {
-	background-color: #ffc86f;
-	box-shadow: 0 0 15px 0 #444444;
-}
-
-.header-wrap {
-	padding: 0 10px;
-}
-
-.header-line {
-	border-bottom: 1px solid #444444;
-	width: 100%;
-}
-
-.header-name {
-	font-size: 35px;
-}
-
-.header-name a{
-	color: inherit;
-}
-
-.header-name-first {
-	transform: translateY(8px);
-}
-
-.header-element-wrap {
-	padding: 0 5px;
-}
-
-.header-elements {
+.header__row {
 	align-items: center;
 	display: flex;
 	justify-content: space-between;
 }
 
-.header-right {
+.header__title{
+	padding: 0 5px;
+	font-size: 35px;
+	transform: translateY(8px);
+}
+
+.header__title-link{
+	color: inherit;
+}
+
+.header__menu {
 	align-items: center;
 	display: flex;
 }
 
-.exit-button{
-	height: 25px;
-	width: 80px;
-	border-radius: 4px;
-	font-family: Georgia;
-	color: #ffa717;
-	background-color: #5C3901;
-}
-
-.header-name-second-wrap {
-	align-self: flex-start;
-}
-
-.header-second{
-	padding-bottom: 5px;
-}
-
-.header-search{
+.header__search{
 	margin-right: 10px;
 	white-space: nowrap;
 }
 
-.header-search-input{
+.header__search-input{
+	border: 0;
+	border-radius: 4px;
+	box-sizing: border-box;
 	height: 25px;
 	width: 200px;
 	padding-right: 10px;
@@ -90,7 +49,10 @@ input {
 	font-family: Georgia
 }
 
-.header-search-button{
+.header__search-button {
+	border: 0;
+	border-radius: 4px;
+	box-sizing: border-box;
 	height: 25px;
 	padding-left: 10px;
 	padding-right: 10px;
@@ -101,13 +63,27 @@ input {
 	background-color: #4C678a;
 }
 
-.header .icon{
-	font-size: 180% !important;
-	color: #5C3901;
-	margin-right: 10px;
+.header__dropdown-menu {
+    position: relative;
+    display: inline-block;
+	margin-left: 5px;
+	margin-right: 15px;
 }
 
-.dropbtn {
+.header__dropdown-menu:hover .header__dropdown-menu-list {
+	display: block;
+}
+
+.header__dropdown-menu:hover .header__dropdown-menu-button {
+	background-color: #5C3A03; 
+	color:#ffa717;
+}
+
+.header__dropdown-menu:hover .header__dropdown-menu-button-icon {
+	color:#ffa717;
+}
+
+.header__dropdown-menu-button {
 	height: 25px;
 	width: 170px;
     background-color: #8A7A60;
@@ -118,14 +94,13 @@ input {
 	padding-left: 15px
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-	margin-left: 5px;
-	margin-right: 15px;
+.header__dropdown-menu-button-icon {
+	padding-left: 20px;
+	font-size: 120% !important;
+	color: #5C3A03;
 }
 
-.dropdown-content {
+.header__dropdown-menu-list {
     display: none;
     position: absolute;
     background-color: #C4B398;
@@ -133,29 +108,55 @@ input {
     z-index: 1;
 }
 
-.dropdown-content a {
+.header__dropdown-menu-item {
     color: #5C3A03;
     padding: 8px 16px;
     text-decoration: none;
     display: block;
 	font-family: Georgia;
-}
-
-.dropdown-content a:hover {background-color: #8A7A60;}
-
-.dropdown:hover .dropdown-content {display: block;}
-
-.dropdown:hover .dropbtn {background-color: #5C3A03; color:#ffa717;}
-.dropdown:hover .tr-icon {color:#ffa717;}
-
-.tr-icon{
-	padding-left: 20px;
-	font-size: 120% !important;
-	color: #5C3A03;
-}
-
-.content-wrap{
 	border-bottom: 1px solid #5C3A03;
 	border-left: 1px solid #5C3A03;
 	border-right: 1px solid #5C3A03;
+}
+
+.header__dropdown-menu-item:hover {
+	background-color: #8A7A60;
+}
+
+.header__icon {
+	font-size: 180% !important;
+	color: #5C3901;
+	margin-right: 10px;
+}
+
+.header__button--exit{
+	border: 0;
+	border-radius: 4px;
+	box-sizing: border-box;
+	padding: 0 5px;
+	height: 25px;
+	width: 80px;
+	border-radius: 4px;
+	font-family: Georgia;
+	color: #ffa717;
+	background-color: #5C3901;
+}
+
+.header__row-divide-line {
+	padding: 0 5px;
+	border-bottom: 1px solid #444444;
+	width: 100%;
+}
+
+.header__row--next{
+	align-self: flex-start;
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 5px;
+}
+
+.header__title--next{
+	padding: 0 5px;
+	font-size: 35px;
 }

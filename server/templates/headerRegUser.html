@@ -1,70 +1,47 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<link rel="stylesheet" href="/static/headerRegUser.css">
-		<link rel="stylesheet" href="/static/css/font-awesome.min.css">
-	</head>
-	
-	<body>
-		<header id = "header" class="header">
-			<div class="wrap header-wrap">
-				<div class="header-elements header-first">
-					<div class="header-element-wrap">
-						<div class="header-left header-name header-name-first">
-							<a href='{{ url_for('main.home') }}'> Book </a>
-						</div>
-					</div>
-					
-					<div class="header-right">
-						<form class="header-search" action='{{ url_for('main.search') }}' method="POST">
-							<input class="header-search-input" type="text" name="query" id="query" placeholder="Название книги, имя автора">
-							<input class="header-search-button" type="submit" value="Поиск"></input>
-						</form>
-					
-						<div class="dropdown">
-							<button class="dropbtn">Моя Библиотека
-								<i class="tr-icon fa fa-caret-square-o-down" aria-hidden="true"></i>
-							</button>
-							<div class="dropdown-content">
-								<div class="content-wrap">
-									<a href="#">Все книги</a>
-								</div>
-								<div class="content-wrap">
-									<a href="#">Сейчас читаю</a>
-								</div>
-								<div class="content-wrap">
-									<a href="#">Хочу прочитать</a>
-								</div>
-							</div>
-						</div>
-						
-						<div class="icon">
-							<i class="fa fa-user-circle-o" aria-hidden="true"></i>
-						</div>
-								
-						<div class="header-element-wrap">
-							<form action='{{ url_for('auth.logout') }}' method="POST">
-								<input class="exit-button" type="submit" value="Выйти" method="POST"></input>
-							</form>
-						</div>
-					</div>
-				</div>
-					
-					
-				<div class="header-element-wrap">
-					<div class="header-line"></div>
-				</div>
-					
-					
-				<div class="header-elements header-second">
-					<div class="header-element-wrap header-name-second-wrap">
-						<div class="header-name header-name-second">
-							<a href='{{ url_for('main.home') }}'> Verse </a>
-						</div>
-					</div>
-				</div>
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="/static/headerRegUser.css">
+	<link rel="stylesheet" href="/static/css/font-awesome.min.css">
+</head>
+
+<header class="header">
+	<div class="header__wrap">
+		<div class="header__row">
+			<div class="header__title">
+				<a class="header__title-link" href="{{ url_for('main.home') }}"> Book </a>
 			</div>
-		</header>
-	</body>
-</html>
+			
+			<div class="header__menu">
+				<form class="header__search" action="{{ url_for('main.search') }}" method="POST">
+					<input class="header__search-input" type="text" name="query" id="query" placeholder="Название книги, имя автора">
+					<input class="header__search-button" type="submit" value="Поиск">
+				</form>
+			
+				<div class="header__dropdown-menu">
+					<button class="header__dropdown-menu-button">Моя Библиотека
+						<i class="header__dropdown-menu-button-icon fa fa-caret-square-o-down" aria-hidden="true"></i>
+					</button>
+					<div class="header__dropdown-menu-list">
+						<a class="header__dropdown-menu-item" href="#">Все книги</a>
+						<a class="header__dropdown-menu-item" href="#">Сейчас читаю</a>
+						<a class="header__dropdown-menu-item" href="#">Хочу прочитать</a>
+					</div>
+				</div>
+				
+				<i class="header__icon fa fa-user-circle-o" aria-hidden="true"></i>
+
+				<input class="header__button--exit" type="button" value="Выйти" onclick="location.href='{{ url_for('auth.logout') }}';">
+			</div>
+		</div>
+			
+			
+		<div class="header__row-divide-line"></div>
+			
+			
+		<div class="header__row--next">
+			<div class="header__title--next">
+				<a class="header__title-link" href="{{ url_for('main.home') }}"> Verse </a>
+			</div>
+		</div>
+	</div>
+</header>
