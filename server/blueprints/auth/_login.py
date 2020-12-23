@@ -1,44 +1,29 @@
-import bcrypt
-from flask import render_template, request, redirect, url_for
 from common.models import User
-from flask_login import login_user, current_user
+from flask import redirect, render_template, request, url_for
+from flask_login import current_user, login_user
+
+from ._utils import check_password
+
+_incorrect_credentials = 'Вы ввели неверный логин или пароль'
 
 
-def login():
+def show_login_form():
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
 
-    userdata = {
-        'login': ""
-    }
-    return render_template('enterPage.html',
-                           userdata=userdata)
+    return render_template('login_page.html')
 
 
-def login_post():
-    userdata = request.form.to_dict()
+def do_login():
+    username = request.form.get('login', '')
+    password = request.form.get('pwd', '')
 
-    # check if user with input login exists
-    if User.query.filter_by(login=userdata['login']).scalar() is None:
-        error_message = 'Пользователя с таким логином не существует'
-        return render_template('enterPage.html',
-                               userdata=userdata,
-                               error_message=error_message)
+    user = User.query.filter_by(login=username).first()
 
-    # get user
-    user = User.query.filter_by(login=userdata['login']).one()
-
-    # check if password is correct
-    pwd = user.password
-
-    pwd = pwd.encode('utf-8')
-    input_pwd = userdata['pwd'].encode('utf-8')
-
-    if not bcrypt.checkpw(input_pwd, pwd):
-        error_message = 'Неправильный пароль'
-        return render_template('enterPage.html',
-                               userdata=userdata,
-                               error_message=error_message)
-
-    login_user(user, remember=False)
-    return redirect(url_for('main.home'))
+    if user and check_password(user, password):
+        login_user(user, remember=False)
+        return redirect(url_for('main.home'))
+    else:
+        return render_template('login_page.html',
+                               old_login=username,
+                               error_message=_incorrect_credentials)

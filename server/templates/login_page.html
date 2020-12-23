@@ -21,7 +21,7 @@
 				<form method="POST">
 					<div class="enter-wrap">
 						<div class="login-wrap input-wrap">
-							<input class="login-input enter-input" type="text" id="login" name="login" placeholder="Логин" value="{{ userdata['login'] }}">
+							<input class="login-input enter-input" type="text" id="login" name="login" placeholder="Логин" value="{{ old_login or '' }}">
 						</div>
 							
 						<div class="password-wrap input-wrap">
@@ -37,7 +37,7 @@
 							<a href=# class="fogot-password">Забыли пароль?</a>
 						</div>
 
-						<div class="error-message"> {{ error_message }} </div>
+						<div class="error-message"> {{ error_message or '' }} </div>
 						<script src="/static/js/psw_toggling.js"></script>
 					</div>
 				</form>
