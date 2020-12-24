@@ -20,8 +20,7 @@ def get_book_info(book_id: int):
         return render_template('book_page.html',
                                book=book,
                                favorites_count=favorites_count,
-                               wishlist_count=wishlist_count,
-                               current_user=current_user)
+                               wishlist_count=wishlist_count)
     else:
         return 'No such book', 200
 
@@ -47,7 +46,6 @@ def post_review():
 
     if 1 <= rating <= 10:
         review.rating = Rating(book=book,
-                               user=current_user,
                                rating=rating)
         book.rating_sum += rating
         book.rating_num += 1

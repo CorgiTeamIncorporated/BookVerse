@@ -24,6 +24,7 @@
 
 .header__title-link{
 	color: inherit;
+	text-decoration: none;
 }
 
 .header__menu {
@@ -38,7 +39,6 @@
 
 .header__search-input{
 	border: 0;
-	border-radius: 4px;
 	box-sizing: border-box;
 	height: 25px;
 	width: 200px;
@@ -129,11 +129,42 @@
 	margin-right: 10px;
 }
 
+.header__join {
+	padding-left: 1px;
+    padding-right: 5px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.header__join-button {
+	height: 25px;
+	width: 170px;
+	border-radius: 4px;
+	font-family: Georgia;
+	color: #ffe66f;
+	background-color: #4C678a;
+}
+
 .header__exit-button{
 	border: 0;
 	border-radius: 4px;
 	box-sizing: border-box;
 	padding: 0 5px;
+	height: 25px;
+	width: 80px;
+	border-radius: 4px;
+	font-family: Georgia;
+	color: #ffa717;
+	background-color: #5C3901;
+}
+
+.header__login{
+	padding: 0 5px;
+}
+
+.header__login-button{
 	height: 25px;
 	width: 80px;
 	border-radius: 4px;

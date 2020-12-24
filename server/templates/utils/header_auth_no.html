@@ -1,0 +1,40 @@
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="/static/header.css">
+	<link rel="stylesheet" href="/static/css/font-awesome.min.css">
+</head>
+
+<header class="header">
+	<div class="header__wrap">
+		<div class="header__row">
+			<div class="header__title">
+				<a class="header__title-link" href="{{ url_for('main.home') }}"> Book </a>
+			</div>
+			
+			<div class="header__menu">
+				<form class="header__search" action="{{ url_for('main.search') }}" method="GET">
+					<input class="header__search-input" type="text" name="query" id="query" placeholder="Название книги, имя автора">
+					<input class="header__search-button"  type="submit" value="Поиск">
+				</form>
+			
+				<form class="header__join" action="{{ url_for('auth.join') }}" method="GET">
+						<input class="header__join-button" type="submit" value="Зарегистрироваться">
+				</form>
+						
+				<form class="header__login" action="{{ url_for('auth.login') }}" method="GET">
+					<input class="header__login-button" type="submit" value="Войти">
+				</form>
+			</div>
+		</div>
+			
+			
+		<div class="header__row-divide-line"></div>
+			
+			
+		<div class="header__row--next">
+			<div class="header__title--next">
+				<a class="header__title-link" href="{{ url_for('main.home') }}"> Verse </a>
+			</div>
+		</div>
+	</div>
+</header>
