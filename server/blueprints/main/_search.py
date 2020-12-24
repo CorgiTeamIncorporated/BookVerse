@@ -2,6 +2,7 @@ from common.database import db
 from common.models import Author, Book, Genre, Series, Tag
 from flask import render_template, request
 from flask_login import current_user
+from sqlalchemy.exc import ProgrammingError
 
 
 def do_search():
@@ -14,7 +15,7 @@ def do_search():
 
 
 def search_books(query, limit=5):
-    def filter_by_keywords(cls, keywords: str, limit: int=5) -> list:
+    def filter_by_keywords(cls, keywords: str, limit: int = 5) -> list:
         return cls.query.filter(
             cls.__ts_vector__.match(keywords, postgresql_regconfig='russian')
         ).limit(limit).all()
@@ -31,6 +32,6 @@ def search_books(query, limit=5):
                 books |= set(entity.books)
 
         return list(books)
-    except:
+    except ProgrammingError:
         db.session.rollback()
         return []

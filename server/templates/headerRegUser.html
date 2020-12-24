@@ -12,7 +12,7 @@
 			</div>
 			
 			<div class="header__menu">
-				<form class="header__search" action="{{ url_for('main.search') }}" method="POST">
+				<form class="header__search" action="{{ url_for('main.search') }}" method="GET">
 					<input class="header__search-input" type="text" name="query" id="query" placeholder="Название книги, имя автора">
 					<input class="header__search-button" type="submit" value="Поиск">
 				</form>
@@ -30,7 +30,9 @@
 				
 				<i class="header__icon fa fa-user-circle-o" aria-hidden="true"></i>
 
-				<input class="header__button--exit" type="button" value="Выйти" onclick="location.href='{{ url_for('auth.logout') }}';">
+				<form class="header__exit" action="{{ url_for('auth.logout') }}" method="GET">
+					<input class="header__exit-button" type="submit" value="Выйти">
+				</form>
 			</div>
 		</div>
 			

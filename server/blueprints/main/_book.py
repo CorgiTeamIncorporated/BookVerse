@@ -4,6 +4,7 @@ from common.database import db
 from common.models import Book, Rating, Review, User
 from flask import redirect, render_template, request, url_for
 from flask_login import current_user, login_required
+from sqlalchemy.exc import IntegrityError
 
 
 def get_book_info(book_id: int):
@@ -33,7 +34,7 @@ def post_review():
 
     if text == '':
         return 'Review can not be empty', 200
-    
+
     book = Book.query.filter(Book.id == book_id).first()
     if book is None:
         return 'There is no book with such id', 200
@@ -54,7 +55,7 @@ def post_review():
     try:
         db.session.add(review)
         db.session.commit()
-    except:
+    except IntegrityError:
         return 'You have already reviewed that book', 200
 
     return redirect(request.referrer or url_for('main.home'))
