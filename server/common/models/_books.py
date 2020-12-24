@@ -1,10 +1,9 @@
-from common.database import db, postgresql
-from sqlalchemy import cast, func
-from ._utils import create_tsvector
-
-from sqlalchemy import case
+from common.database import db
+from sqlalchemy import case, cast, func
+from sqlalchemy.dialects import postgresql
 from sqlalchemy.ext.hybrid import hybrid_property
 
+from ._utils import create_tsvector
 
 series_of_books_table = db.Table(
     'series_of_books',

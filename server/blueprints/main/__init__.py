@@ -1,9 +1,8 @@
-from flask import Blueprint
-from flask.templating import render_template
+from flask import Blueprint, render_template
 
 from ._book import get_book_info, post_review
-from ._home import home
-from ._search import search, search_results
+from ._home import get_home_page
+from ._search import do_search
 
 main = Blueprint('main', __name__)
 
@@ -20,14 +19,13 @@ def star_rating():
 
 
 main.add_url_rule('/home', 'home',
-                  home, methods=['GET'])
+                  get_home_page, methods=['GET'])
 
 main.add_url_rule('/search', 'search',
-                  search, methods=['POST'])
-main.add_url_rule('/search/q=<query>', 'search_results',
-                  search_results, methods=['GET'])
+                  do_search, methods=['GET'])
 
 main.add_url_rule('/book/<int:book_id>', 'book',
                   get_book_info, methods=['GET'])
+
 main.add_url_rule('/review', 'review',
                   post_review, methods=['POST'])

@@ -1,12 +1,9 @@
+from config import DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.ext.associationproxy import association_proxy  # noqa
-from sqlalchemy.dialects import postgresql  # noqa
-
-import config as co
 
 db = SQLAlchemy()
 
 url_mask = 'postgresql://{user}:{password}@{host}:{port}/{db}'
-db_url = url_mask.format(user=co.DB_USER, password=co.DB_PASS,
-                         host=co.DB_HOST, port=co.DB_PORT,
-                         db=co.DB_NAME)
+db_url = url_mask.format(user=DB_USER, password=DB_PASS,
+                         host=DB_HOST, port=DB_PORT,
+                         db=DB_NAME)
