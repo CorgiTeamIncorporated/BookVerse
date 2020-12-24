@@ -1,20 +1,20 @@
 from flask import Blueprint
-from ._join import join, join_post
-from ._login import login, login_post
-from ._logout import logout
 
+from ._join import do_join, show_join_form
+from ._login import do_login, show_login_form
+from ._logout import logout
 
 auth = Blueprint('auth', __name__)
 
 auth.add_url_rule('/join', 'join',
-                  join, methods=['GET'])
+                  show_join_form, methods=['GET'])
 auth.add_url_rule('/join', 'join_post',
-                  join_post, methods=['POST'])
+                  do_join, methods=['POST'])
 
 auth.add_url_rule('/login', 'login',
-                  login, methods=['GET'])
-auth.add_url_rule('/login', 'login_post',
-                  login_post, methods=['POST'])
+                  show_login_form, methods=['GET'])
+auth.add_url_rule('/login', 'do_login',
+                  do_login, methods=['POST'])
 
 auth.add_url_rule('/logout', 'logout',
-                  logout, methods=['POST'])
+                  logout, methods=['GET'])

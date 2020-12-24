@@ -1,3 +1,6 @@
+{% set max_stars = 10 %}
+{% set max_rating = 10 %}
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -18,7 +21,7 @@
 			<div class="wrap page-container">
 				<div class="main-page">
 					<div class="input-box">
-						<form action='{{ url_for('main.search') }}' method="POST">
+						<form action="{{ url_for('main.search') }}" method="GET">
 							<input class="search-input" type="text" name="query" id="query" placeholder="Название книги, имя автора">
 							<div class="button-box">
 								<input class="search-button" type="submit" value="Поиск">
@@ -33,8 +36,8 @@
 						</div>
 						
 						<div class="genre-links">
-							{% for item in genre_list %}
-								<a href=# class="genre-link">{{ item.name }}</a>
+							{% for genre in best_genres %}
+								<a href=# class="genre-link">{{ genre.name | replace(' / ', '/') }}</a>
     						{% endfor %}
 						</div>						
 					</div>
@@ -44,64 +47,35 @@
 							<a class="topic" href=#>Выбор Редакции</a>
 						</div>
 
-						{% for item in redaction_choice %}
+						{% for choice in editors_choice %}
 							<div class="boоks-topic">
 								<div class="book-box">
 									<div class="img-wrap">
-										<img class="book-cover" src="{{ item.cover_path }}">
+										<img class="book-cover" src="{{ choice.book.cover_path }}">
 									</div>
 									
 									<div class="inf-wrap">
 										<div class="book-header">
 											<div class="book-title-author">
-												<a href='{{ item.book_href }}' class="book-link">{{ item.book_name }} </a>
-												{% for author in item.authors %}
-													<a href=# class="book-link book-author"> {{ author }} </a>
+												<a href="{{ url_for('main.book', book_id=choice.book.id) }}" class="book-link">{{ choice.book.name }} </a>
+												{% for author in choice.book.authors %}
+													<a href=# class="book-link book-author"> {{ author.name }} </a>
 												{% endfor %}			
 											</div>
 											
 											<div class="stars">
-												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100, 0) | max, 100) | min }}%;"></i>
-												</i>
-												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 100, 0) | max, 100) | min }}%;"></i>
-												</i>
-												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 200, 0) | max, 100) | min }}%;"></i>
-												</i>
-												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 300, 0) | max, 100) | min }}%;"></i>
-												</i>
-												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 400, 0) | max, 100) | min }}%;"></i>
-												</i>
-												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 500, 0) | max, 100) | min }}%;"></i>
-												</i>
-												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 600, 0) | max, 100) | min }}%;"></i>
-												</i>
-												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 700, 0) | max, 100) | min }}%;"></i>
-												</i>
-												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" aria-hidden="true" style="width: {{ ((item.book_rating*100 - 800, 0) | max, 100) | min }}%;"></i>
-												</i>
-												<i class="fa fa-star stars-out">
-													<i class="fa fa-star stars-in" style="width: {{ ((item.book_rating*100 - 900, 0) | max, 100) | min }}%;"></i>
-												</i>
+												{{ star_rating(choice.book.average_rating, max_stars, max_rating) | safe }}
 											</div>
 										</div>
 										
 										<div class="tags">
-											{% for tag in item.tags %}
+											{% for tag in choice.book.tags %}
 												<a href=# class="book-tag"> #{{ tag.name }} </a>
 											{% endfor %}
 										</div>
 										
 										<div class="description">
-											{{ item.description }}
+											{{ choice.book.preamble }}
 										</div>
 									</div>	
 								</div>
@@ -119,7 +93,7 @@
 						</div>
 						
 						<div class="img-wrap leader-img">
-							<img class="book-cover" src="{{ best_book_month.cover_path }}">
+							<img class="book-cover" src="{{ book_of_month.cover_path }}">
 						</div>
 					</div>
 					

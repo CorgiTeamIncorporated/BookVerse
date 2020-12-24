@@ -25,7 +25,7 @@
 						</div>
 						
 						<div class="login-wrap input-wrap">
-							<input class="login-input enter-input" type="text" id="login" name="login" placeholder="Имя пользователя" value="{{ userdata['login'] }}" maxlength="32" required>
+							<input class="login-input enter-input" type="text" id="login" name="login" placeholder="Имя пользователя" value="{{ old_login or '' }}" maxlength="32" required>
 						</div>
 						<div class="info">Имя пользователя должно содержать не менее<br>
 										 трёх знаков; может включать буквы латинского<br>
@@ -37,7 +37,7 @@
 						</div>
 						
 						<div class="email-wrap input-wrap">
-							<input class="email-input enter-input" type="text" id="email" name="email" placeholder="Почта" value="{{ userdata['email'] }}" required>
+							<input class="email-input enter-input" type="email" id="email" name="email" placeholder="Почта" value="{{ old_email or '' }}" required>
 						</div>
 						
 						<div class="field-name">
@@ -67,7 +67,7 @@
 						</div>
 
 						<div class="error-message"> 
-							{{ error_message }} 
+							{{ error_message or '' }} 
 						</div>
 
 						<script src="/static/js/psw_toggling.js"></script>

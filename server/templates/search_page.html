@@ -11,9 +11,7 @@
 	<body>
 		{% if current_user.is_authenticated %}
 			{% include "headerRegUser.html" %}
-		{% endif %}
-
-		{% if not current_user.is_authenticated %}
+		{% else %}
 			{% include "headerUnregUser.html" %}
 		{% endif %}
 
@@ -21,7 +19,7 @@
 			<div class="wrap page-container">
 				<div class="main-page">
 						<div class="topic-header">
-							<a class="topic">{{ search_phrase }}</a>
+							<a class="topic">Результаты поиска по запросу "{{ query }}"</a>
 						</div>
 						
 						{% with book_list=book_found_list %}

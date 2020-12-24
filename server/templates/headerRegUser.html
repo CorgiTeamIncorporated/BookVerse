@@ -12,14 +12,14 @@
 				<div class="header-elements header-first">
 					<div class="header-element-wrap">
 						<div class="header-left header-name header-name-first">
-							<a href='{{ url_for('main.home') }}'> Book </a>
+							<a href="{{ url_for('main.home') }}"> Book </a>
 						</div>
 					</div>
 					
 					<div class="header-right">
-						<form class="header-search" action='{{ url_for('main.search') }}' method="POST">
+						<form class="header-search" action="{{ url_for('main.search') }}" method="GET">
 							<input class="header-search-input" type="text" name="query" id="query" placeholder="Название книги, имя автора">
-							<input class="header-search-button" type="submit" value="Поиск"></input>
+							<input class="header-search-button" type="submit" value="Поиск">
 						</form>
 					
 						<div class="dropdown">
@@ -44,8 +44,8 @@
 						</div>
 								
 						<div class="header-element-wrap">
-							<form action='{{ url_for('auth.logout') }}' method="POST">
-								<input class="exit-button" type="submit" value="Выйти" method="POST"></input>
+							<form action="{{ url_for('auth.logout') }}" method="GET">
+								<input class="exit-button" type="submit" value="Выйти">
 							</form>
 						</div>
 					</div>
