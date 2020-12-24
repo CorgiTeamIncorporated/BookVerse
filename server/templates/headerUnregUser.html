@@ -11,22 +11,22 @@
 				<div class="header-elements header-first">
 					<div class="header-element-wrap">
 						<div class="header-left header-name header-name-first">
-							<a href='{{ url_for('main.home') }}'> Book </a>
+							<a href="{{ url_for('main.home') }}"> Book </a>
 						</div>
 					</div>
 					
 					<div class="header-right">
-						<form class="header-search" action='{{ url_for('main.search') }}' method="POST">
+						<form class="header-search" action="{{ url_for('main.search') }}" method="GET">
 							<input class="header-search-input" type="text" name="query" id="query" placeholder="Название книги, имя автора">
-							<input class="header-search-button" type="submit" value="Поиск"></input>
+							<input class="header-search-button" type="submit" value="Поиск">
 						</form>
 					
 						<div class="header-element-wrap header-element-vertical-wrap">
-								<input class="reg-button" type="submit" value="Зарегистрироваться" onclick="window.location.href='{{ url_for('auth.join') }}';"></input>
+								<input class="reg-button" type="submit" value="Зарегистрироваться" onclick="window.location.href='{{ url_for('auth.join') }}';">
 						</div>
 								
 						<div class="header-element-wrap">
-							<input class="enter-button" type="submit" value="Войти" onclick="window.location.href='{{ url_for('auth.login') }}';"></input>
+							<input class="enter-button" type="submit" value="Войти" onclick="window.location.href='{{ url_for('auth.login') }}';">
 						</div>
 					</div>
 				</div>
@@ -40,7 +40,7 @@
 				<div class="header-elements header-second">
 					<div class="header-element-wrap header-name-second-wrap">
 						<div class="header-name header-name-second">
-							<a href='{{ url_for('main.home') }}'> Verse </a>
+							<a href="{{ url_for('main.home') }}"> Verse </a>
 						</div>
 					</div>
 				</div>

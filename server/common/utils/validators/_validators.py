@@ -1,6 +1,7 @@
-from typing import List, Union
-from common.models import User
 import re
+from typing import List, Union
+
+from common.models import User
 
 __all__ = ['Compose',
            'MinLengthValidator',
