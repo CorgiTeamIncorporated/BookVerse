@@ -33,6 +33,25 @@
 	white-space: nowrap;
 }
 
+.login-form__field-name-box {
+	display: flex;
+	justify-content: center;
+}
+
+.login-form__field-name {
+	min-width: 300px;
+	text-align: left;
+	font-size: 95%;
+	margin-bottom: 2px;
+	margin-top: -8px;
+}
+
+.login-form__field-name-box--password {
+	display: flex;
+	justify-content: center;
+	margin-left: 10px;
+}
+
 .login-form__input {
 	height: 25px;
 	width: 300px;
@@ -44,6 +63,16 @@
 .login-form__input-icon {
 	margin-left: -30px;
 	cursor: pointer;
+}
+
+.login-form__field-info {
+	white-space: pre-line;
+	color: #5C3901;
+	font-family: Georgia;
+	font-size: 80%;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	line-height:7px
 }
 
 .login-form__button {

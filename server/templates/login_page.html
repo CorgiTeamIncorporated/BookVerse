@@ -1,13 +1,15 @@
 {% extends "utils/base.html" %}
-{% block title %} Страница входа {% endblock title %}
+{% block title %} Вход {% endblock title %}
+
 {% block head %}
 	{{ super() }}
-	<link rel="stylesheet" href="/static/login_page.css">
+	<link rel="stylesheet" href="/static/auth.css">
 {% endblock head %}
+
 {% block content %}
 <div class="content">
 	<div class="login-box">
-		<div class="login-box__title"> Авторизация </div>
+		<div class="login-box__title"> Аутентификация </div>
 		<div class="login-box__description"> Войти используя аккаунт на сайте: </div>
 		
 		<form class="login-form" method="POST">
