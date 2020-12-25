@@ -1,0 +1,43 @@
+<header class="header">
+	<div class="header__wrap">
+		<div class="header__row">
+			<div class="header__title">
+				<a class="header__title-link" href="{{ url_for('main.home') }}"> Book </a>
+			</div>
+			
+			<div class="header__menu">
+				<form class="header__search" action="{{ url_for('main.search') }}" method="GET">
+					<input class="header__search-input" type="text" name="query" id="query" placeholder="Название книги, имя автора">
+					<input class="header__search-button" type="submit" value="Поиск">
+				</form>
+			
+				<div class="header__dropdown-menu">
+					<button class="header__dropdown-menu-button">Моя Библиотека
+						<i class="header__dropdown-menu-button-icon fa fa-caret-square-o-down" aria-hidden="true"></i>
+					</button>
+					<div class="header__dropdown-menu-list">
+						<a class="header__dropdown-menu-item" href="#">Все книги</a>
+						<a class="header__dropdown-menu-item" href="#">Сейчас читаю</a>
+						<a class="header__dropdown-menu-item" href="#">Хочу прочитать</a>
+					</div>
+				</div>
+				
+				<i class="header__icon fa fa-user-circle-o" aria-hidden="true"></i>
+
+				<form class="header__exit" action="{{ url_for('auth.logout') }}" method="GET">
+					<input class="header__exit-button" type="submit" value="Выйти">
+				</form>
+			</div>
+		</div>
+			
+			
+		<div class="header__row-divide-line"></div>
+			
+			
+		<div class="header__row--next">
+			<div class="header__title--next">
+				<a class="header__title-link" href="{{ url_for('main.home') }}"> Verse </a>
+			</div>
+		</div>
+	</div>
+</header>

@@ -1,0 +1,114 @@
+.content {
+	padding: 50px 0;
+	text-align: center;
+}
+
+.login-box {
+	max-width: 1010px;
+	margin: 0 auto;
+	font-family: Georgia;
+}
+
+.login-box__title {
+	color: #5C3901;
+	font-weight: bolder;
+	font-size: 200%;
+	margin-bottom: 15px;
+}
+
+.login-box__description {
+	color: #5C3901;
+	font-family: Georgia;
+	font-size: 110%;
+	margin-bottom: 10px;
+}
+
+.login-form__field {
+	padding-bottom: 15px;
+}
+
+.login-form__field--password {
+	padding-bottom: 15px;
+	margin-left: -10px;
+	white-space: nowrap;
+}
+
+.login-form__input {
+	height: 25px;
+	width: 300px;
+	padding: 10px 20px;
+	border-radius: 4px;
+	font-family: Georgia;
+}
+
+.login-form__input-icon {
+	margin-left: -30px;
+	cursor: pointer;
+}
+
+.login-form__button {
+	height: 25px;
+	width: 150px;
+	border-radius: 4px;
+	font-family: Georgia;
+	color: #ffe66f;
+	background-color: #7B8EA8;
+}
+
+.login-form__field--link {
+	margin: -5px 10px;
+}
+
+.login-form__link {
+	font-size: smaller;
+	color: #4C678a;
+}
+
+.login-form__error-message {
+	white-space: pre-line;
+	color: #e2240b;
+	font-family: Georgia;
+	font-size: 80%;
+	margin-bottom: 20px;
+	margin-top: 14px;
+	line-height:7px
+}
+
+.login-form__error-message:empty {
+	display: none;
+}
+
+.login-box__field--link {
+	font-size: 90%;
+	padding-top: 10px;
+	padding-bottom: 30px;
+	color: #5C3901;
+}
+
+.login-box__link {
+	color: #4C678a;
+}
+
+.login-box__title--alt{
+	color: #5C3901
+}
+
+.socials {
+	display: flex;
+	justify-content: center;
+}
+
+.socials__button {
+	border: 0px;
+	background-color: transparent;
+	margin: 0px 5px;
+}
+
+.socials__logo{
+	height: 40px;
+	width: 40px;
+}
+
+.socials__button-description {
+	color: #515151;
+}

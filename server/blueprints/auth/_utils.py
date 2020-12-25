@@ -9,15 +9,15 @@ login_validator = Compose([
     MinLengthValidator(3, 'Логин должен быть не короче 3 символов'),
     MaxLengthValidator(32, 'Логин должен быть не длиннее 32 символов'),
     PatternValidator(r'[a-zA-Z0-9_]*',
-                      'Логин может состоять только из букв, '
-                      'цифр и знаков нижнего подчеркивания'),
+                     'Логин может состоять только из букв, '
+                     'цифр и знаков нижнего подчеркивания'),
     LoginNotRegisteredValidator('Данный логин уже зарегистрирован')
 ])
 
 email_validator = Compose([
     MaxLengthValidator(64, 'Email должен быть не длиннее 64 символов'),
     PatternValidator(r'[a-z0-9\-.]+@([a-z0-9\-]+\.)+[a-z]{2,4}',
-                      'Неверный формат email'),
+                     'Неверный формат email'),
     EmailNotRegisteredValidator('Данная почта уже зарегистрирована')
 ])
 
