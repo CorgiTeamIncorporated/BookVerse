@@ -17,7 +17,7 @@
 				<div class="auth-form__field-name-box">
 					<p class="auth-form__field-name"> Имя пользователя: </p>
 				</div>
-				<input class="auth-form__input" type="text" id="login" name="login" placeholder="Имя пользователя" value="{{ old_login or '' }}" maxlength="32" required>
+				<input class="auth-form__input" type="text" id="login" name="login" placeholder="ray_bradbury42" value="{{ old_login or '' }}" maxlength="32" required>
 				<div class="auth-form__field-info">Имя пользователя должно содержать не менее<br>
                                                 трёх знаков; может включать буквы латинского<br>
                                                     алфавита, цифры и нижние подчёркивания
@@ -28,14 +28,14 @@
 				<div class="auth-form__field-name-box">
 					<p class="auth-form__field-name"> Почта: </p>
 				</div>
-				<input class="auth-form__input" type="email" id="email" name="email" placeholder="Почта" value="{{ old_email or '' }}" required>
+				<input class="auth-form__input" type="email" id="email" name="email" placeholder="ray_bradbury42@gmail.com" value="{{ old_email or '' }}" required>
 			</div>
 			
 			<div class="auth-form__field--password">
 				<div class="auth-form__field-name-box--password">
 					<p class="auth-form__field-name"> Пароль: </p>
 				</div>
-				<input class="auth-form__input" type="password" id="pwd" name="pwd" placeholder="Пароль" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}" required>
+				<input class="auth-form__input" type="password" id="pwd" name="pwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}" required>
 				<i class="auth-form__input-icon fa fa-eye" id="toggle_pwd"></i>
 				<div class="auth-form__field-info">Пароль должен содержать не менее восьми<br> 
                                                знаков, включать строчные и заглавные буквы,<br>
@@ -47,7 +47,7 @@
 				<div class="auth-form__field-name-box--password">
 					<p class="auth-form__field-name"> Подтвердите пароль: </p>
 				</div>
-				<input class="auth-form__input" type="password" id="pwd_rep" name="pwd_rep" placeholder="Повторите пароль" required>
+				<input class="auth-form__input" type="password" id="pwd_rep" name="pwd_rep" required>
 				<i class="auth-form__input-icon fa fa-eye" id="toggle_pwd_rep"></i>
 			</div>
 				

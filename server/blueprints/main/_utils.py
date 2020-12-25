@@ -10,9 +10,11 @@ def get_best_genres(num):
 
 
 def get_editors_choice(num):
-    return RedactorChoice.query.order_by(
+    editors_choice = RedactorChoice.query.order_by(
         RedactorChoice.added_date.desc()
     ).limit(num).all()
+
+    return [choice.book for choice in editors_choice]
 
 
 def get_book_of_month():

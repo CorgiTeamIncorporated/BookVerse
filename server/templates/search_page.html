@@ -15,7 +15,7 @@
 			<span class="content-central__header-title">Результаты поиска по запросу "{{ query }}"</span>
 		</div>
 		<div id="book_list">
-			{% with book_list=book_found_list %}
+			{% with books=books %}
 				{% include "utils/book_list.html" %}
 			{% endwith %}
 		</div>
