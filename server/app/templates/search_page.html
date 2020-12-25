@@ -1,0 +1,312 @@
+{% extends "utils/base.html" %}
+{% block title %} Страница входа {% endblock title %}
+{% block head %}
+	{{ super() }}
+	<link rel="stylesheet" href="/static/search_page.css">
+{% endblock head %}
+{% block content %}
+<body>
+	<div class="page-body">
+		<div class="wrap page-container">
+			<div class="main-page">
+					<div class="topic-header">
+						<a class="topic">Результаты поиска по запросу "{{ query }}"</a>
+					</div>
+					
+					{% with book_list=book_found_list %}
+						{% include "utils/book_list.html" %}
+					{% endwith %}
+			</div>
+			
+			
+		
+			<!-- <div class="blue-column">
+				<div class="genre-column">
+					<div class="genre-topic">
+						<a href=# class="column-topic-link">Жанры</a>
+					</div>
+					
+					<div class="genre-scroll">
+						<ul class="genre-list">
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton1" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton1" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Зарубежный детектив</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton2" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton2" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Классический детектив</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton3" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton3" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Ужасы</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton4" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton4" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Мистика</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton5" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton5" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Современный детектив</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton6" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton6" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Зарубежная классика</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton7" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton7" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Русская классика</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton8" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton8" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Фольклор</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton9" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton9" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Зарубежная фантастика</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton10" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton10" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Киберпанк</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton11" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton11" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Роман</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton12" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton12" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Приключения</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Общая психология</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				
+				
+				<div class="genre-column tag-wrap">
+					<div class="genre-topic">
+						<a href=# class="column-topic-link">Теги</a>
+					</div>
+					
+					<div class="genre-scroll">
+						<ul class="genre-list">
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton1" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton1" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">AU</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton2" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton2" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Ангст</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton3" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton3" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Ужасы</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton4" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton4" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Повседневность</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton5" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton5" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Флафф</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton6" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton6" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Юмор</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton7" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton7" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Hurt/Comfort</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton8" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton8" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Психология</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton9" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton9" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Сверхспособности</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton10" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton10" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Киберпанк</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton11" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton11" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Романтика</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton12" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button" id="removeButton12" onClick ="changeRemoveButton(this)">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Приключения</a>
+							</li>
+							
+							<li class="genre">
+								<button class="add-remote-button" type = "button" id= "plusButton" onClick = "changePlus(this)">
+									<i class="icon fa fa-plus" aria-hidden="true"></i>
+								</button>
+								<button class="add-remote-button">
+									<i class=" icon fa fa-times-circle" aria-hidden="true"></i>
+								</button>
+								<a href=# class="book-top-link">Современность</a>
+							</li>
+						</ul>
+					</div>
+
+					
+				</div> -->
+
+			</div>
+		</div>
+	</div>
+</body>
+{% endblock content %}

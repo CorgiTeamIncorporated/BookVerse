@@ -1,4 +1,6 @@
-server/config.json
+# Python trash
 *__pycache__*
 *.pytest_cache*
-server/crawlers/config.py
+# Very secret info I don't want to disclose
+crawlers/config.py
+env/flask_secret.env

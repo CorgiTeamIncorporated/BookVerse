@@ -1,0 +1,111 @@
+{% set max_stars = 10 %}
+{% set max_rating = 10 %}
+
+{% extends "utils/base.html" %}
+{% block title %} Страница входа {% endblock title %}
+{% block head %}
+	{{ super() }}
+	<link rel="stylesheet" href="/static/home_page.css">
+{% endblock head %}
+{% block content %}
+<body>
+	<div class="page-body">
+		<div class="wrap page-container">
+			<div class="main-page">
+				<div class="input-box">
+					<form action="{{ url_for('main.search') }}" method="GET">
+						<input class="search-input" type="text" name="query" id="query" placeholder="Название книги, имя автора">
+						<div class="button-box">
+							<input class="search-button" type="submit" value="Поиск">
+							<button class="search-button">Случайная книга</button>
+						</div>
+					</form>
+				</div>
+				
+				<div class="topic-wrap">
+					<div class="topic-header">
+						<a class="topic" href=#>Популярные Категории</a>
+					</div>
+					
+					<div class="genre-links">
+						{% for genre in best_genres %}
+							<a href=# class="genre-link">{{ genre.name | replace(' / ', '/') }}</a>
+						{% endfor %}
+					</div>						
+				</div>
+				
+				<div class="topic-wrap">
+					<div class="topic-header">
+						<a class="topic" href=#>Выбор Редакции</a>
+					</div>
+
+					{% for choice in editors_choice %}
+						<div class="boоks-topic">
+							<div class="book-box">
+								<div class="img-wrap">
+									<img class="book-cover" src="{{ choice.book.cover_path }}">
+								</div>
+								
+								<div class="inf-wrap">
+									<div class="book-header">
+										<div class="book-title-author">
+											<a href="{{ url_for('main.book', book_id=choice.book.id) }}" class="book-link">{{ choice.book.name }} </a>
+											{% for author in choice.book.authors %}
+												<a href=# class="book-link book-author"> {{ author.name }} </a>
+											{% endfor %}			
+										</div>
+										
+										<div class="stars">
+											{{ star_rating(choice.book.average_rating, max_stars, max_rating) | safe }}
+										</div>
+									</div>
+									
+									<div class="tags">
+										{% for tag in choice.book.tags %}
+											<a href=# class="book-tag"> #{{ tag.name }} </a>
+										{% endfor %}
+									</div>
+									
+									<div class="description">
+										{{ choice.book.preamble }}
+									</div>
+								</div>	
+							</div>
+						</div>
+					{% endfor %}
+
+				</div>
+			</div>
+			
+
+			<div class="blue-column">
+				<div class="leader-wrap">
+					<div class="leader-topic">
+						Новинка месяца
+					</div>
+					
+					<div class="img-wrap leader-img">
+						<img class="book-cover" src="{{ book_of_month.cover_path }}">
+					</div>
+				</div>
+				
+				<div class="top-wrap">
+					<a href=# class="top-link">Топ 10</a>
+
+					{% for book in best_books %}
+						<a href="{{ url_for('main.book', book_id=book.id) }}" class="book-top-link"> {{ book.name }} </a>
+					{% endfor %}			
+				</div>
+				
+				<div class="top-wrap authors-wrap">
+					<a href=# class="top-link">Популярные Авторы</a>
+					
+					{% for author in best_authors %}
+						<a href=# class="book-top-link"> {{ author.name }} </a>
+					{% endfor %}					
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+{% endblock content %}

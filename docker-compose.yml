@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  postgres:
+    build: database/
+    ports:
+      - 127.0.0.1:15432:5432
+    env_file:
+      - ./env/postgres_common.env
+      - ./env/postgres_master.env
+      - ./env/postgres_app.env
+  web:
+    build: server/
+    ports:
+      - 127.0.0.1:10001:8000
+    env_file:
+      - ./env/postgres_common.env
+      - ./env/postgres_app.env
+      - ./env/flask_secret.env
+    depends_on:
+      - postgres
