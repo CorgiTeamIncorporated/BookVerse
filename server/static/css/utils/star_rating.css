@@ -1,0 +1,17 @@
+.stars-rating__star {
+	position: relative;
+	margin-right: 0px;
+	color: grey;
+	z-index: 1;
+}
+
+.stars-rating__star-filling {
+	position: absolute; 
+	z-index: 2; 
+	color: orange;
+	font-size: inherit;
+	display: block; 
+	top: 0; left: 0; bottom: 0;
+	overflow: hidden;
+	width: 0; 
+}

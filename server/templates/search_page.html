@@ -1,21 +1,26 @@
 {% extends "utils/base.html" %}
-{% block title %} Страница входа {% endblock title %}
+{% block title %} Результаты поиска по запросу "{{ query }}" {% endblock title %}
+
 {% block head %}
 	{{ super() }}
 	<link rel="stylesheet" href="/static/search_page.css">
+	<link rel="stylesheet" href="/static/css/utils/book_list.css">
+	<link rel="stylesheet" href="/static/css/utils/star_rating.css">
 {% endblock head %}
+
 {% block content %}
 <body>
 	<div class="page-body">
 		<div class="wrap page-container">
 			<div class="main-page">
-					<div class="topic-header">
-						<a class="topic">Результаты поиска по запросу "{{ query }}"</a>
-					</div>
-					
+				<div class="topic-header">
+					<a class="topic">Результаты поиска по запросу "{{ query }}"</a>
+				</div>
+				<div id="book_list">
 					{% with book_list=book_found_list %}
 						{% include "utils/book_list.html" %}
 					{% endwith %}
+				</div>
 			</div>
 			
 			

@@ -1,49 +1,36 @@
 {% set max_stars = 10 %}
 {% set max_rating = 10 %}
 
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<link rel="stylesheet" href="/static/css/font-awesome.min.css">
-		<link rel="stylesheet" href="/static/book_list.css">
-	</head>
-	
-	<body>
-		{% for book in books %}
-			<div class="boоks-topic">
-				<div class="book-box">
-					<div class="img-wrap">
-						<img class="book-cover" src="{{ book.cover_path }}">
-					</div>
-					
-					<div class="inf-wrap">
-						<div class="book-header">
-							<div class="book-title-author">
-								<a href="{{ url_for('main.book', book_id=book.id) }}" class="book-link">{{ book.name }} </a>
-								{% for author in book.authors %}
-									<a href=# class="book-link book-author"> {{ author.name }} </a>
-								{% endfor %}		
-							</div>
-							
-							<div class="stars">
-								{{ star_rating(book.average_rating, max_stars, max_rating) | safe }}
-							</div>
-						</div>
-						
-						<div class="tags">
-							{% for tag in book.tags %}
-								<a href=# class="book-tag"> #{{ tag.name }} </a>
-							{% endfor %}
-						</div>
-						
-						<div class="description">
-							{{ book.preamble }}
-						</div>
-					</div>	
+
+{% for book in books %}
+	<div class="book-card">
+		<div class="book-card__book-cover-box">
+			<img class="book-card__book-cover" src="{{ book.cover_path }}">
+		</div>
+		
+		<div class="book-card__info-box">
+			<div class="book-card__header-box">
+				<div class="book-card__info-book">
+					<a class="book-card__link-book" href="{{ url_for('main.book', book_id=book.id) }}">{{ book.name }} </a>
+					{% for author in book.authors %}
+						<a href=# class="book-card__link-author"> {{ author.name }} </a>
+					{% endfor %}		
+				</div>
+				
+				<div class="book-card__rating">
+					{{ star_rating(book.average_rating, max_stars, max_rating) | safe }}
 				</div>
 			</div>
-		{% endfor %}					
-	</body>
-</html>
+			
+			<div class="book-card__tag-box">
+				{% for tag in book.tags %}
+					<a href=# class="book-card__link-tag"> #{{ tag.name }} </a>
+				{% endfor %}
+			</div>
+			
+			<div class="book-card__book-description">
+				{{ book.preamble }}
+			</div>
+		</div>	
+	</div>
+{% endfor %}
