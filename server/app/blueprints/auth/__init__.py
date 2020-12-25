@@ -8,7 +8,7 @@ auth = Blueprint('auth', __name__)
 
 auth.add_url_rule('/join', 'join',
                   show_join_form, methods=['GET'])
-auth.add_url_rule('/join', 'join_post',
+auth.add_url_rule('/join', 'do_join',
                   do_join, methods=['POST'])
 
 auth.add_url_rule('/login', 'login',

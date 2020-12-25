@@ -46,6 +46,7 @@ def post_review():
 
     if 1 <= rating <= 10:
         review.rating = Rating(book=book,
+                               user=current_user,
                                rating=rating)
         book.rating_sum += rating
         book.rating_num += 1
