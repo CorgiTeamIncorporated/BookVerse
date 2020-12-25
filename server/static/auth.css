@@ -3,42 +3,42 @@
 	text-align: center;
 }
 
-.login-box {
+.auth-box {
 	max-width: 1010px;
 	margin: 0 auto;
 	font-family: Georgia;
 }
 
-.login-box__title {
+.auth-box__title {
 	color: #5C3901;
 	font-weight: bolder;
 	font-size: 200%;
 	margin-bottom: 15px;
 }
 
-.login-box__description {
+.auth-box__description {
 	color: #5C3901;
 	font-family: Georgia;
 	font-size: 110%;
 	margin-bottom: 10px;
 }
 
-.login-form__field {
+.auth-form__field {
 	padding-bottom: 15px;
 }
 
-.login-form__field--password {
+.auth-form__field--password {
 	padding-bottom: 15px;
 	margin-left: -10px;
 	white-space: nowrap;
 }
 
-.login-form__field-name-box {
+.auth-form__field-name-box {
 	display: flex;
 	justify-content: center;
 }
 
-.login-form__field-name {
+.auth-form__field-name {
 	min-width: 300px;
 	text-align: left;
 	font-size: 95%;
@@ -46,13 +46,13 @@
 	margin-top: -8px;
 }
 
-.login-form__field-name-box--password {
+.auth-form__field-name-box--password {
 	display: flex;
 	justify-content: center;
 	margin-left: 10px;
 }
 
-.login-form__input {
+.auth-form__input {
 	height: 25px;
 	width: 300px;
 	padding: 10px 20px;
@@ -60,12 +60,12 @@
 	font-family: Georgia;
 }
 
-.login-form__input-icon {
+.auth-form__input-icon {
 	margin-left: -30px;
 	cursor: pointer;
 }
 
-.login-form__field-info {
+.auth-form__field-info {
 	white-space: pre-line;
 	color: #5C3901;
 	font-family: Georgia;
@@ -75,7 +75,7 @@
 	line-height:7px
 }
 
-.login-form__button {
+.auth-form__button {
 	height: 25px;
 	width: 150px;
 	border-radius: 4px;
@@ -84,16 +84,16 @@
 	background-color: #7B8EA8;
 }
 
-.login-form__field--link {
+.auth-form__field--link {
 	margin: -5px 10px;
 }
 
-.login-form__link {
+.auth-form__link {
 	font-size: smaller;
 	color: #4C678a;
 }
 
-.login-form__error-message {
+.auth-form__error-message {
 	white-space: pre-line;
 	color: #e2240b;
 	font-family: Georgia;
@@ -103,22 +103,22 @@
 	line-height:7px
 }
 
-.login-form__error-message:empty {
+.auth-form__error-message:empty {
 	display: none;
 }
 
-.login-box__field--link {
+.auth-box__field--link {
 	font-size: 90%;
 	padding-top: 10px;
 	padding-bottom: 30px;
 	color: #5C3901;
 }
 
-.login-box__link {
+.auth-box__link {
 	color: #4C678a;
 }
 
-.login-box__title--alt{
+.auth-box__title--alt{
 	color: #5C3901
 }
 

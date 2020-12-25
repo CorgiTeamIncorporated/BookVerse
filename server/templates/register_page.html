@@ -8,60 +8,60 @@
 
 {% block content %}
 <div class="content">
-	<div class="login-box">
-		<div class="login-box__title"> Регистрация </div>
-		<div class="login-box__description"> Зарегистрировать новый аккаунт: </div>
+	<div class="auth-box">
+		<div class="auth-box__title"> Регистрация </div>
+		<div class="auth-box__description"> Зарегистрировать новый аккаунт: </div>
 		
-		<form class="login-form" method="POST">
-			<div class="login-form__field">
-				<div class="login-form__field-name-box">
-					<p class="login-form__field-name"> Имя пользователя: </p>
+		<form class="auth-form" method="POST">
+			<div class="auth-form__field">
+				<div class="auth-form__field-name-box">
+					<p class="auth-form__field-name"> Имя пользователя: </p>
 				</div>
-				<input class="login-form__input" type="text" id="login" name="login" placeholder="Имя пользователя" value="{{ old_login or '' }}" maxlength="32" required>
-				<div class="login-form__field-info">Имя пользователя должно содержать не менее<br>
+				<input class="auth-form__input" type="text" id="login" name="login" placeholder="Имя пользователя" value="{{ old_login or '' }}" maxlength="32" required>
+				<div class="auth-form__field-info">Имя пользователя должно содержать не менее<br>
                                                 трёх знаков; может включать буквы латинского<br>
                                                     алфавита, цифры и нижние подчёркивания
 				</div>
 			</div>
 			
-			<div class="login-form__field">
-				<div class="login-form__field-name-box">
-					<p class="login-form__field-name"> Почта: </p>
+			<div class="auth-form__field">
+				<div class="auth-form__field-name-box">
+					<p class="auth-form__field-name"> Почта: </p>
 				</div>
-				<input class="login-form__input" type="email" id="email" name="email" placeholder="Почта" value="{{ old_email or '' }}" required>
+				<input class="auth-form__input" type="email" id="email" name="email" placeholder="Почта" value="{{ old_email or '' }}" required>
 			</div>
 			
-			<div class="login-form__field--password">
-				<div class="login-form__field-name-box--password">
-					<p class="login-form__field-name"> Пароль: </p>
+			<div class="auth-form__field--password">
+				<div class="auth-form__field-name-box--password">
+					<p class="auth-form__field-name"> Пароль: </p>
 				</div>
-				<input class="login-form__input" type="password" id="pwd" name="pwd" placeholder="Пароль" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}" required>
-				<i class="login-form__input-icon fa fa-eye" id="toggle_pwd"></i>
-				<div class="login-form__field-info">Пароль должен содержать не менее восьми<br> 
+				<input class="auth-form__input" type="password" id="pwd" name="pwd" placeholder="Пароль" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}" required>
+				<i class="auth-form__input-icon fa fa-eye" id="toggle_pwd"></i>
+				<div class="auth-form__field-info">Пароль должен содержать не менее восьми<br> 
                                                знаков, включать строчные и заглавные буквы,<br>
                                                        цифры и специальные символы
 				</div>
 			</div>
 			
-			<div class="login-form__field--password">
-				<div class="login-form__field-name-box--password">
-					<p class="login-form__field-name"> Подтвердите пароль: </p>
+			<div class="auth-form__field--password">
+				<div class="auth-form__field-name-box--password">
+					<p class="auth-form__field-name"> Подтвердите пароль: </p>
 				</div>
-				<input class="login-form__input" type="password" id="pwd_rep" name="pwd_rep" placeholder="Повторите пароль" required>
-				<i class="login-form__input-icon fa fa-eye" id="toggle_pwd_rep"></i>
+				<input class="auth-form__input" type="password" id="pwd_rep" name="pwd_rep" placeholder="Повторите пароль" required>
+				<i class="auth-form__input-icon fa fa-eye" id="toggle_pwd_rep"></i>
 			</div>
 				
-			<div class="login-form__field">
-				<input class="login-form__button" type="submit" id="submit_btn" value="Зарегистрироваться">
+			<div class="auth-form__field">
+				<input class="auth-form__button" type="submit" id="submit_btn" value="Зарегистрироваться">
 			</div>
 
-			<div class="login-form__error-message">{{ error_message or ''}}</div>
+			<div class="auth-form__error-message">{{ error_message or ''}}</div>
 
 			<script src="/static/js/psw_toggling.js"></script>
 			<script src="/static/js/reg_data_checking.js"></script>
 		</form>
 		
-		<div class="login-box__title--alt">
+		<div class="auth-box__title--alt">
 			Зарегистрироваться с помощью социальных сетей или почты:
 		</div>
 		

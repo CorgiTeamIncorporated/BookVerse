@@ -8,38 +8,38 @@
 
 {% block content %}
 <div class="content">
-	<div class="login-box">
-		<div class="login-box__title"> Аутентификация </div>
-		<div class="login-box__description"> Войти используя аккаунт на сайте: </div>
+	<div class="auth-box">
+		<div class="auth-box__title"> Аутентификация </div>
+		<div class="auth-box__description"> Войти используя аккаунт на сайте: </div>
 		
-		<form class="login-form" method="POST">
-			<div class="login-form__field">
-				<input class="login-form__input" type="text" id="login" name="login" placeholder="Логин" value="{{ old_login or '' }}">
+		<form class="auth-form" method="POST">
+			<div class="auth-form__field">
+				<input class="auth-form__input" type="text" id="login" name="login" placeholder="Логин" value="{{ old_login or '' }}">
 			</div>
 				
-			<div class="login-form__field--password">
-				<input class="login-form__input" type="password" id="pwd" name="pwd" placeholder="Пароль">
-				<i class="login-form__input-icon fa fa-eye" id="toggle_pwd"></i>
+			<div class="auth-form__field--password">
+				<input class="auth-form__input" type="password" id="pwd" name="pwd" placeholder="Пароль">
+				<i class="auth-form__input-icon fa fa-eye" id="toggle_pwd"></i>
 			</div>
 				
-			<div class="login-form__field">
-				<input class="login-form__button" type="submit" value="Войти">
+			<div class="auth-form__field">
+				<input class="auth-form__button" type="submit" value="Войти">
 			</div>
 			
-			<div class="login-form__field--link">
-				<a href=# class="login-form__link"> Забыли пароль? </a>
+			<div class="auth-form__field--link">
+				<a href=# class="auth-form__link"> Забыли пароль? </a>
 			</div>
 
-			<div class="login-form__error-message">{{ error_message or ''}}</div>
+			<div class="auth-form__error-message">{{ error_message or ''}}</div>
 			<script src="/static/js/psw_toggling.js"></script>
 		</form>
 		
-		<div class="login-box__field--link">
+		<div class="auth-box__field--link">
 			У вас нет аккаунта?
-			<a href="{{ url_for('auth.join') }}" class="login-box__link">Зарегистрироваться</a>
+			<a href="{{ url_for('auth.join') }}" class="auth-box__link">Зарегистрироваться</a>
 		</div>
 		
-		<div class="login-box__title--alt">
+		<div class="auth-box__title--alt">
 			Войти с помощью социальных сетей или почты:
 		</div>
 		
