@@ -1,10 +1,10 @@
 from os import getenv
 
+from authlib.integrations.base_client.errors import OAuthError
 from common.database import db
 from common.models import User
 from flask import redirect, url_for
 from flask_login import login_user
-from authlib.integrations.base_client.errors import OAuthError
 
 from ._client import oauth_client
 
