@@ -1,9 +1,9 @@
 from os import getenv
 
-from flask import url_for, redirect
-from app.common.models import User # type: ignore
+from common.database import db
+from common.models import User
+from flask import redirect, url_for
 from flask_login import login_user
-from app.common.database import db
 
 from ._client import oauth_client
 
