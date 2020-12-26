@@ -4,3 +4,4 @@
 # Very secret info I don't want to disclose
 crawlers/config.py
 env/flask_secret.env
+env/vk_oauth.env

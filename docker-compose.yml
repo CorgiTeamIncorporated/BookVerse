@@ -16,5 +16,7 @@ services:
       - ./env/postgres_common.env
       - ./env/postgres_app.env
       - ./env/flask_secret.env
+      - ./env/vk_oauth.env
+      - ./env/general.env
     depends_on:
       - postgres
