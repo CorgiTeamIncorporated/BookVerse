@@ -4,6 +4,7 @@ from common.database import db
 from common.models import User
 from flask import redirect, url_for
 from flask_login import login_user
+from authlib.integrations.base_client.errors import OAuthError
 
 from ._client import oauth_client
 
@@ -28,7 +29,10 @@ def vk_oauth_redirect():
 
 
 def vk_oauth_authorize():
-    body = vk.authorize_access_token()
+    try:
+        body = vk.authorize_access_token()
+    except OAuthError:
+        return redirect(url_for('main.home'))
 
     email = body.get('email', '').lower()
     user_id = body.get('user_id')
