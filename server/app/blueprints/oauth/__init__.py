@@ -1,7 +1,7 @@
 from flask import Blueprint
 
 from ._vk import vk_oauth_authorize, vk_oauth_redirect
-from ._client import oauth_client # noqa
+from ._client import oauth_client  # noqa
 
 oauth = Blueprint('oauth', __name__)
 
